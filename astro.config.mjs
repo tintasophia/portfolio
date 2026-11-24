@@ -9,7 +9,7 @@ import keystatic from "@keystatic/astro";
 const isDev = process.argv.includes("dev");
 
 export default defineConfig({
-  site: "https://sophiaollerschmid.com", // TODO: dominio real
+  site: "https://tintasophia.github.io",
   output: "static",
   // En dev se relaja: la API de Keystatic usa rutas sin "/" final.
   trailingSlash: isDev ? "ignore" : "always",

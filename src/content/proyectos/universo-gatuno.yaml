@@ -17,13 +17,6 @@ cover:
     Carta de tarot «The Skater»: un gato celeste asomado de un patín en línea
     entre nubes y estrellas
 blocks:
-  - discriminant: hero
-    value:
-      image:
-        src: ../../assets/img/universo-gatuno/hero.png
-        alt: >-
-          Gato celeste dentro de un patín en línea, entre nubes turquesas sobre
-          un cielo azul noche
   - discriminant: text
     value:
       title: Descripción general
@@ -51,6 +44,13 @@ blocks:
         mismo tema. A través de distintas técnicas y estilos, busqué jugar con
         las formas, exagerar ciertos rasgos y darles personalidad propia a cada
         uno de los gatos.
+  - discriminant: images
+    value:
+      images:
+        - src: ../../assets/img/universo-gatuno/image-klbo.avif
+          alt: AAsdasd
+        - src: ../../assets/img/universo-gatuno/image-1-x1d6.avif
+          alt: asdasdad
   - discriminant: image
     value:
       image:
