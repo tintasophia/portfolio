@@ -4,25 +4,25 @@
 
 @layer components {
   /* ── Tabs ───────────────────────────────────────────────────────────────────
-     DEPENDE DE LOS IDS de hero.md: works, sobre-mi, a-pedido (ver Tabs.astro).
+     Ids fijos de las pestañas: 1 (trabajos), 2 (sobre mí), 3 (a pedido). Ver Tabs.astro.
      Estado = :target. Sin target (o target ajeno) => Works. */
   .tabs [data-panel] { display: none; }
-  .tabs:not(:has(#sobre-mi:target, #a-pedido:target)) [data-panel="works"],
-  .tabs:has(#sobre-mi:target) [data-panel="sobre-mi"],
-  .tabs:has(#a-pedido:target) [data-panel="a-pedido"] { display: block; }
+  .tabs:not(:has([id="2"]:target, [id="3"]:target)) [data-panel="1"],
+  .tabs:has([id="2"]:target) [data-panel="2"],
+  .tabs:has([id="3"]:target) [data-panel="3"] { display: block; }
 
   .tab-link { color: var(--color-ink-2); }
-  .tabs:not(:has(#sobre-mi:target, #a-pedido:target)) .tab-link[data-tab="works"],
-  .tabs:has(#sobre-mi:target) .tab-link[data-tab="sobre-mi"],
-  .tabs:has(#a-pedido:target) .tab-link[data-tab="a-pedido"] { color: var(--color-ink); }
+  .tabs:not(:has([id="2"]:target, [id="3"]:target)) .tab-link[data-tab="1"],
+  .tabs:has([id="2"]:target) .tab-link[data-tab="2"],
+  .tabs:has([id="3"]:target) .tab-link[data-tab="3"] { color: var(--color-ink); }
   .tab-link:hover { color: var(--color-ink); }
 
   /* Pill deslizante: CSS anchor positioning. Sin soporte, la tab activa lleva su propio fondo. */
   .tab-pill { display: none; }
   @supports (anchor-name: --a) {
-    .tab-link[data-tab="works"] { anchor-name: --tab-works; }
-    .tab-link[data-tab="sobre-mi"] { anchor-name: --tab-sobre-mi; }
-    .tab-link[data-tab="a-pedido"] { anchor-name: --tab-a-pedido; }
+    .tab-link[data-tab="1"] { anchor-name: --tab-1; }
+    .tab-link[data-tab="2"] { anchor-name: --tab-2; }
+    .tab-link[data-tab="3"] { anchor-name: --tab-3; }
     .tab-pill {
       display: block;
       position: absolute;
@@ -32,17 +32,17 @@
       border-radius: var(--radius-pill);
       background: var(--color-card);
       box-shadow: var(--shadow-pill);
-      left: anchor(--tab-works left);
-      right: anchor(--tab-works right);
+      left: anchor(--tab-1 left);
+      right: anchor(--tab-1 right);
       transition: left 0.55s var(--ease-soft), right 0.55s var(--ease-soft);
     }
-    .tabs:has(#sobre-mi:target) .tab-pill { left: anchor(--tab-sobre-mi left); right: anchor(--tab-sobre-mi right); }
-    .tabs:has(#a-pedido:target) .tab-pill { left: anchor(--tab-a-pedido left); right: anchor(--tab-a-pedido right); }
+    .tabs:has([id="2"]:target) .tab-pill { left: anchor(--tab-2 left); right: anchor(--tab-2 right); }
+    .tabs:has([id="3"]:target) .tab-pill { left: anchor(--tab-3 left); right: anchor(--tab-3 right); }
   }
   @supports not (anchor-name: --a) {
-    .tabs:not(:has(#sobre-mi:target, #a-pedido:target)) .tab-link[data-tab="works"],
-    .tabs:has(#sobre-mi:target) .tab-link[data-tab="sobre-mi"],
-    .tabs:has(#a-pedido:target) .tab-link[data-tab="a-pedido"] {
+    .tabs:not(:has([id="2"]:target, [id="3"]:target)) .tab-link[data-tab="1"],
+    .tabs:has([id="2"]:target) .tab-link[data-tab="2"],
+    .tabs:has([id="3"]:target) .tab-link[data-tab="3"] {
       background: var(--color-card);
       box-shadow: var(--shadow-pill);
     }

@@ -2,13 +2,12 @@
 /* Tabs sin JS. Patrón: el estado vive SOLO en :target.
    - Cada tab es un <a href="#id"> y el <span id> ancla (alto 0) está justo sobre la barra,
      así el salto de scroll deja la barra pegada arriba (scroll-mt = top del sticky).
-   - Sin target (o target ajeno a las tabs) se muestra la primera tab (Works).
-   - Los ids (works, sobre-mi, a-pedido) vienen de hero.md y están ESCRITOS en
-     src/styles/components/home.css (reglas :has/:target, anchor-name de la pill).
-     Si cambian los ids hay que actualizar ese CSS.
+   - Sin target (o target ajeno a las tabs) se muestra la primera pestaña.
+   - Los ids son fijos (1, 2, 3) y están escritos en src/styles/components/home.css
+     (reglas :has/:target, anchor-name de la pill). Los nombres visibles salen de hero.yaml.
    - Los paneles (slot) son elementos con data-panel="<id>". */
 interface Props {
-  tabs: { id: string; label: string }[];
+  tabs: { id: "1" | "2" | "3"; label: string }[];
 }
 const { tabs } = Astro.props;
 ---

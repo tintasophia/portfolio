@@ -2,10 +2,9 @@
 import { getImage } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 interface Props {
-  entry: CollectionEntry<"home">;
+  entry: CollectionEntry<"aPedido">;
 }
 const { entry } = Astro.props;
-if (entry.data.section !== "a-pedido") throw new Error("CommissionPanel espera la entrada a-pedido");
 const { eyebrow, title, subtitle, intro, groups, note, image, imageMobile } = entry.data;
 
 // Imagen decorativa: <picture> con recorte mobile (< 810px) y versión desktop.
@@ -20,7 +19,7 @@ const mob = imageMobile ? await variants(imageMobile) : undefined;
 const tile = "rounded-tile p-5";
 ---
 
-<section data-panel="a-pedido" class="animate-panel-in motion-reduce:animate-none">
+<section data-panel="3" class="animate-panel-in motion-reduce:animate-none">
   <div class="pb-[52px] pt-[30px] lg:pb-[62px] lg:pt-10 flex flex-col gap-[18px]">
     <h2 class="text-h3">{eyebrow}</h2>
     <div
@@ -72,15 +71,15 @@ const tile = "rounded-tile p-5";
                 tile,
                 i === 0 ? "order-4" : "order-5",
                 "col-span-2 flex md:h-[187px] lg:h-auto flex-col bg-card md:order-none md:col-span-1 lg:justify-center",
-                g.items ? "gap-3 lg:gap-2.5" : "gap-2.5",
+                g.items?.length ? "gap-3 lg:gap-2.5" : "gap-2.5",
               ]}
             >
               <h3 class="text-label">{g.title}</h3>
-              {g.items && (
+              {g.items?.length ? (
                 <ul class="flex flex-col gap-3 text-caption lg:gap-2.5">
                   {g.items.map((item) => <li>{item}</li>)}
                 </ul>
-              )}
+              ) : null}
               {g.text && <p class="text-caption">{g.text}</p>}
               {i === groups.length - 1 && note && <p class="mt-2.5 text-caption">{note}</p>}
             </div>

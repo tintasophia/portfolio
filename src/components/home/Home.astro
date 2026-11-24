@@ -1,25 +1,30 @@
 ---
 /* Contenido de la home entre el header y el footer: hero + tabs (Works / Sobre mí / A pedido).
    Uso: <Home /> dentro de src/pages/index.astro. Sin props. Cero JS. */
-import { getCollection, getEntry } from "astro:content";
+import { getEntry } from "astro:content";
+import { getProyectosOrdenados } from "../../lib/proyectos";
 import Hero from "./Hero.astro";
 import Tabs from "./Tabs.astro";
 import WorksPanel from "./WorksPanel.astro";
 import AboutPanel from "./AboutPanel.astro";
 import CommissionPanel from "./CommissionPanel.astro";
 
-const hero = await getEntry("home", "hero");
-const about = await getEntry("home", "sobre-mi");
-const commission = await getEntry("home", "a-pedido");
-if (!hero || hero.data.section !== "hero" || !about || !commission) throw new Error("Falta contenido en src/content/home");
+const hero = await getEntry("hero", "hero");
+const about = await getEntry("sobreMi", "sobre-mi");
+const commission = await getEntry("aPedido", "a-pedido");
+if (!hero || !about || !commission) throw new Error("Falta contenido en src/content/home");
 const heroData = hero.data;
-const projects = (await getCollection("proyectos")).sort((a, b) => a.data.order - b.data.order);
-const label = (id: string) => heroData.tabs.find((t) => t.id === id)?.label ?? id;
+const projects = await getProyectosOrdenados();
+const tabs = [
+  { id: "1" as const, label: heroData.tabs.trabajos },
+  { id: "2" as const, label: heroData.tabs.sobreMi },
+  { id: "3" as const, label: heroData.tabs.aPedido },
+];
 ---
 
 <Hero title={heroData.title} tagline={heroData.tagline} />
-<Tabs tabs={heroData.tabs}>
-  <WorksPanel label={label("works")} projects={projects} />
+<Tabs tabs={tabs}>
+  <WorksPanel label={heroData.tabs.trabajos} projects={projects} />
   <AboutPanel entry={about} />
   <CommissionPanel entry={commission} />
 </Tabs>

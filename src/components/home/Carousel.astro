@@ -3,7 +3,7 @@
    radio+label. data-n selecciona los keyframes para n fotos (1..8, ver home.css);
    data-interval = segundos por foto (1 decimal), data-n = cantidad; home.css los traduce a --t, --n e --i (nth-child), sin style="" inline. Al elegir un puntito
    (:has(input:checked)) se corta el autoplay. */
-import { Picture } from "astro:assets";
+import Img from "../Img.astro";
 import type { ImageMetadata } from "astro";
 interface Props {
   photos: { src: ImageMetadata; alt: string; caption?: string }[];
@@ -25,16 +25,13 @@ const hasCaptions = photos.some((p) => p.caption);
       {
         photos.map((p, i) => (
           <div class="slide absolute inset-0">
-            <Picture
+            <Img
               src={p.src}
               alt={p.alt}
-              formats={["avif", "webp"]}
-              fallbackFormat="webp"
               widths={[480, 720, 960]}
               sizes="(min-width: 1200px) 480px, (min-width: 810px) 353px, 100vw"
               loading={i === 0 ? "eager" : "lazy"}
               fetchpriority={i === 0 ? "high" : undefined}
-              class="size-full object-cover"
             />
           </div>
         ))

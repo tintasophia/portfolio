@@ -1,0 +1,64 @@
+---
+/* Imagen responsive (AVIF/WebP) con placeholder difuminado. Sin JS:
+   - En el build se genera una versión mínima (24px, ~300 bytes) como archivo aparte.
+   - Se muestra escalada y borrosa debajo de la imagen real, que al cargar se dibuja encima.
+   El contenedor tiene que estar posicionado (relative/absolute) y con overflow-clip.
+   Si en algún momento se suben imágenes con transparencia, el placeholder se vería a través:
+   para esas, usar `placeholder={false}`. */
+import type { ImageMetadata } from "astro";
+import { Picture, getImage } from "astro:assets";
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  widths: number[];
+  sizes: string;
+  loading?: "eager" | "lazy";
+  fetchpriority?: "high" | "low" | "auto";
+  /** Clases del <img> (object-fit, transiciones…). */
+  class?: string;
+  /** Clases del <picture>. Por defecto ocupa todo el contenedor. */
+  pictureClass?: string;
+  placeholder?: boolean;
+}
+const {
+  src,
+  alt,
+  widths,
+  sizes,
+  loading = "lazy",
+  fetchpriority,
+  class: imgClass = "size-full object-cover",
+  pictureClass = "absolute inset-0 block size-full",
+  placeholder = true,
+} = Astro.props;
+
+const lqip = placeholder ? await getImage({ src, width: 24, format: "webp", quality: 50 }) : undefined;
+---
+
+{
+  lqip && (
+    <img
+      src={lqip.src}
+      width={lqip.attributes.width}
+      height={lqip.attributes.height}
+      alt=""
+      aria-hidden="true"
+      decoding="async"
+      class="pointer-events-none absolute inset-0 size-full scale-110 object-cover blur-xl"
+    />
+  )
+}
+<Picture
+  pictureAttributes={{ class: pictureClass }}
+  src={src}
+  alt={alt}
+  formats={["avif", "webp"]}
+  fallbackFormat="webp"
+  widths={widths}
+  sizes={sizes}
+  loading={loading}
+  fetchpriority={fetchpriority}
+  decoding="async"
+  class={imgClass}
+/>

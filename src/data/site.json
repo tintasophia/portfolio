@@ -2,14 +2,21 @@
   "name": "Sophia Oller Schmid",
   "role": "Ilustradora y diseñadora gráfica",
   "location": "Córdoba, Argentina",
-  "lang": "es",
   "title": "Sophia Oller Schmid — Ilustraciones & arte visual",
   "description": "Portfolio de Sophia Oller Schmid, ilustradora y diseñadora gráfica de Córdoba, Argentina. Dibujos, personajes, ilustración botánica y trabajos a pedido.",
   "email": "sophiaollerschmid@gmail.com",
-  "cta": { "label": "Charlemos!" },
+  "cta": {
+    "label": "Charlemos!"
+  },
   "social": [
-    { "label": "Instagram", "url": "https://www.instagram.com/tinta.sophia" },
-    { "label": "Behance", "url": "https://www.behance.net/sophiaollerschmid" }
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/tinta.sophia"
+    },
+    {
+      "label": "Behance",
+      "url": "https://www.behance.net/sophiaollerschmid"
+    }
   ],
   "footer": {
     "blurb": "Ilustradora y diseñadora gráfica de Córdoba, Argentina.",
@@ -21,5 +28,6 @@
     "servicesLabel": "Servicio(s)",
     "moreTitle": "Proyectos recientes",
     "moreButton": "Conocer más"
-  }
+  },
+  "lang": "es"
 }

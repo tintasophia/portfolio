@@ -1,0 +1,1385 @@
+diff --git a/dist/cloud-image-schema-73c8e446.js b/dist/cloud-image-schema-73c8e446.js
+index f0400b12db2753f6fd53376ad43d84ba0407370b..c34f79b5c7c0aa5e8193b4e54e45991dc17af997 100644
+--- a/dist/cloud-image-schema-73c8e446.js
++++ b/dist/cloud-image-schema-73c8e446.js
+@@ -11,13 +11,13 @@ const cloudImageSchema = {
+     }
+   }),
+   alt: text({
+-    label: 'Alt text'
++    label: 'Texto alternativo'
+   }),
+   height: integer({
+-    label: 'Height'
++    label: 'Alto'
+   }),
+   width: integer({
+-    label: 'Width'
++    label: 'Ancho'
+   })
+ };
+ 
+diff --git a/dist/index-9cd2e7e2.js b/dist/index-9cd2e7e2.js
+index b6c01226e4fbd16e2b9355d16478f6308353df91..05d9130f42c81e59e874be242b796273ad6ac84f 100644
+--- a/dist/index-9cd2e7e2.js
++++ b/dist/index-9cd2e7e2.js
+@@ -3836,7 +3836,7 @@ function ImageDimensionsInput(props) {
+   let t2;
+   if ($[4] !== props.image.width || $[5] !== t1) {
+     t2 = /*#__PURE__*/jsx(NumberField, {
+-      label: "Width",
++      label: "Ancho",
+       width: "scale.1600",
+       formatOptions: t0,
+       value: props.image.width,
+@@ -3934,7 +3934,7 @@ function ImageDimensionsInput(props) {
+   let t11;
+   if ($[20] !== props.image.height || $[21] !== t10) {
+     t11 = /*#__PURE__*/jsx(NumberField, {
+-      label: "Height",
++      label: "Alto",
+       width: "scale.1600",
+       formatOptions: t9,
+       value: props.image.height,
+@@ -4294,7 +4294,7 @@ function ImageDialog(props) {
+   if ($[25] !== status || $[26] !== state) {
+     t11 = status === "good" ? /*#__PURE__*/jsxs(Fragment, {
+       children: [/*#__PURE__*/jsx(TextArea, {
+-        label: "Alt text",
++        label: "Texto alternativo",
+         value: state.alt,
+         onChange: alt => setState(state_1 => ({
+           ...state_1,
+@@ -4340,7 +4340,7 @@ function ImageDialog(props) {
+   if ($[33] !== onCancel) {
+     t13 = /*#__PURE__*/jsx(Button, {
+       onPress: onCancel,
+-      children: "Cancel"
++      children: "Cancelar"
+     });
+     $[33] = onCancel;
+     $[34] = t13;
+@@ -4348,7 +4348,7 @@ function ImageDialog(props) {
+     t13 = $[34];
+   }
+   const t14 = status !== "good";
+-  const t15 = image ? "Done" : "Insert";
++  const t15 = image ? "Listo" : "Insertar";
+   let t16;
+   if ($[35] !== formId || $[36] !== t14 || $[37] !== t15) {
+     t16 = /*#__PURE__*/jsx(Button, {
+@@ -4678,7 +4678,7 @@ function ImagePreview(t0) {
+   let t16;
+   if ($[23] === Symbol.for("react.memo_cache_sentinel")) {
+     t16 = /*#__PURE__*/jsx(Tooltip, {
+-      children: "Remove Image"
++      children: "Quitar imagen"
+     });
+     $[23] = t16;
+   } else {
+diff --git a/dist/index-af84bca7.js b/dist/index-af84bca7.js
+index 4961e40ba609481eccb6bdeb508ea9c3dcfdddd0..203df48a75c5eedc9583a8cd5fd9e564a31d7ae1 100644
+--- a/dist/index-af84bca7.js
++++ b/dist/index-af84bca7.js
+@@ -1933,15 +1933,15 @@ const ToolbarSeparator = () => {
+ const THEME_MODE = {
+   light: {
+     icon: sunIcon,
+-    label: 'Light'
++    label: 'Claro'
+   },
+   dark: {
+     icon: moonIcon,
+-    label: 'Dark'
++    label: 'Oscuro'
+   },
+   auto: {
+     icon: monitorIcon,
+-    label: 'System'
++    label: 'Sistema'
+   }
+ };
+ const themeItems = Object.entries(THEME_MODE).map(([id, {
+@@ -2789,8 +2789,8 @@ function GitMenu() {
+     t10 = deleteBranchDialogVisible && /*#__PURE__*/jsxs(AlertDialog, {
+       title: "Delete branch",
+       tone: "critical",
+-      cancelLabel: "Cancel",
+-      primaryActionLabel: "Yes, delete",
++      cancelLabel: "Cancelar",
++      primaryActionLabel: "Sí, eliminar",
+       autoFocusButton: "cancel",
+       onPrimaryAction: async () => {
+         if (repoInfo) {
+@@ -3676,7 +3676,7 @@ const PageHeader = t0 => {
+   if ($[8] !== sidebarState.isOpen || $[9] !== sidebarState.toggle || $[10] !== t4 || $[11] !== menuButtonRef || $[12] !== t6) {
+     t7 = /*#__PURE__*/jsx(ActionButton, {
+       prominence: "low",
+-      "aria-label": "Open app navigation",
++      "aria-label": "Abrir menú",
+       "aria-pressed": sidebarState.isOpen,
+       isHidden: t4,
+       onPress: sidebarState.toggle,
+@@ -4919,7 +4919,7 @@ function ArrayFieldInput(props) {
+     let t14;
+     if ($[30] === Symbol.for("react.memo_cache_sentinel")) {
+       t14 = /*#__PURE__*/jsx(Heading, {
+-        children: "Edit item"
++        children: "Editar elemento"
+       });
+       $[30] = t14;
+     } else {
+@@ -4958,7 +4958,7 @@ function ArrayFieldInput(props) {
+           form: formId,
+           prominence: "high",
+           type: "submit",
+-          children: "Done"
++          children: "Listo"
+         })
+       });
+       $[36] = formId;
+@@ -5036,7 +5036,7 @@ function ArrayFieldAddItemModalContent(props) {
+   const previewProps = useMemo(() => createGetPreviewProps(props.previewProps.schema.element, setValue, () => undefined), [props.previewProps.schema.element, setValue])(value);
+   return /*#__PURE__*/jsxs(Dialog, {
+     children: [/*#__PURE__*/jsx(Heading, {
+-      children: "Add item"
++      children: "Agregar elemento"
+     }), /*#__PURE__*/jsx(Content, {
+       children: /*#__PURE__*/jsx(VStack, {
+         id: props.formId,
+@@ -5310,9 +5310,10 @@ function ArrayFieldListView(props) {
+     },
+     children: item_0 => {
+       var _props$schema$itemLab, _props$schema;
+-      const label = ((_props$schema$itemLab = (_props$schema = props.schema).itemLabel) === null || _props$schema$itemLab === void 0 ? void 0 : _props$schema$itemLab.call(_props$schema, item_0)) || `Item ${props.elements.indexOf(item_0) + 1}`;
++      const label = ((_props$schema$itemLab = (_props$schema = props.schema).itemLabel) === null || _props$schema$itemLab === void 0 ? void 0 : _props$schema$itemLab.call(_props$schema, item_0)) || `Elemento ${props.elements.indexOf(item_0) + 1}`;
++      // sophi-web: itemLabel puede devolver un elemento (miniatura + texto); el texto va en data-text.
+       return /*#__PURE__*/jsxs(Item$2, {
+-        textValue: label,
++        textValue: typeof label === 'string' ? label : (label?.props?.['data-text'] ?? ''),
+         children: [/*#__PURE__*/jsx(Text, {
+           children: label
+         }), /*#__PURE__*/jsxs(TooltipTrigger, {
+@@ -5345,11 +5346,11 @@ function arrayFieldEmptyState() {
+       color: "neutralSecondary",
+       size: "large",
+       weight: "medium",
+-      children: "Empty list"
++      children: "Lista vacía"
+     }), /*#__PURE__*/jsx(Text, {
+       align: "center",
+       color: "neutralTertiary",
+-      children: "Add the first item to see it here."
++      children: "Agregá el primero para verlo acá."
+     })]
+   });
+ }
+@@ -11181,7 +11182,7 @@ const LinkElement = ({
+                 src: unlinkIcon
+               })
+             }), /*#__PURE__*/jsx(Tooltip, {
+-              children: "Unlink"
++              children: "Quitar link"
+             })]
+           })]
+         })
+@@ -11233,13 +11234,13 @@ function LinkDialog$1({
+         }
+       },
+       children: [/*#__PURE__*/jsxs(Heading, {
+-        children: [props.href ? 'Edit' : 'Add', " link"]
++        children: [props.href ? 'Editar' : 'Agregar', " link"]
+       }), /*#__PURE__*/jsx(Content, {
+         children: /*#__PURE__*/jsxs(Flex, {
+           gap: "large",
+           direction: "column",
+           children: [/*#__PURE__*/jsx(TextField, {
+-            label: "Text",
++            label: "Texto",
+             value: props.text,
+             isReadOnly: true
+           }), /*#__PURE__*/jsx(TextField, {
+@@ -11797,7 +11798,7 @@ function CodeElement({
+                 })
+               }), /*#__PURE__*/jsx(Tooltip, {
+                 tone: "critical",
+-                children: "Remove"
++                children: "Quitar"
+               })]
+             })]
+           })
+@@ -12310,7 +12311,7 @@ function DefaultToolbarWithChrome({
+           })]
+         })]
+       }), !isValid && /*#__PURE__*/jsx(FieldMessage, {
+-        children: "Contains invalid fields. Please edit."
++        children: "Tiene campos con errores. Revisalos."
+       })]
+     })
+   });
+@@ -12355,7 +12356,7 @@ function FormValue$1({
+         form: formId,
+         prominence: "high",
+         type: "submit",
+-        children: "Done"
++        children: "Listo"
+       })]
+     })]
+   });
+@@ -12395,7 +12396,7 @@ function DefaultToolbarWithoutChrome({
+       })
+     }), /*#__PURE__*/jsx(Tooltip, {
+       tone: "critical",
+-      children: "Remove"
++      children: "Quitar"
+     })]
+   });
+ }
+@@ -13084,7 +13085,7 @@ const dividerButton = /*#__PURE__*/jsxs(TooltipTrigger, {
+   delay: 200,
+   children: [/*#__PURE__*/jsx(DividerButton, {}), /*#__PURE__*/jsxs(Tooltip, {
+     children: [/*#__PURE__*/jsx(Text, {
+-      children: "Divider"
++      children: "Separador"
+     }), /*#__PURE__*/jsx(Kbd, {
+       children: "---"
+     })]
+@@ -13168,7 +13169,7 @@ const LayoutContainer = ({
+               })
+             }), /*#__PURE__*/jsx(Tooltip, {
+               tone: "critical",
+-              children: "Remove"
++              children: "Quitar"
+             })]
+           })]
+         })
+@@ -13305,7 +13306,7 @@ function ListButtons$1(props) {
+     if (lists.unordered.isSelected) selectedKeys.push('unordered');
+     return /*#__PURE__*/jsx(ActionGroup, {
+       flexShrink: 0,
+-      "aria-label": "Lists",
++      "aria-label": "Listas",
+       selectionMode: "single",
+       buttonLabelBehavior: "hide",
+       density: "compact"
+@@ -13327,7 +13328,7 @@ function ListButtons$1(props) {
+         children: [/*#__PURE__*/jsx(Icon, {
+           src: listIcon
+         }), /*#__PURE__*/jsx(Text, {
+-          children: "Bullet List"
++          children: "Lista con viñetas"
+         }), /*#__PURE__*/jsx(Kbd, {
+           children: "-\u23B5"
+         })]
+@@ -13336,7 +13337,7 @@ function ListButtons$1(props) {
+         children: [/*#__PURE__*/jsx(Icon, {
+           src: listOrderedIcon
+         }), /*#__PURE__*/jsx(Text, {
+-          children: "Numbered List"
++          children: "Lista numerada"
+         }), /*#__PURE__*/jsx(Kbd, {
+           children: "1.\u23B5"
+         })]
+@@ -13518,7 +13519,7 @@ function ImageFieldInput(props) {
+           }
+         }
+       },
+-      children: "Choose file"
++      children: "Elegir archivo"
+     });
+     $[8] = props;
+     $[9] = t5;
+@@ -13533,7 +13534,7 @@ function ImageFieldInput(props) {
+         props.onChange(null);
+         onBlur();
+       },
+-      children: "Remove"
++      children: "Quitar"
+     });
+     $[10] = value;
+     $[11] = props;
+@@ -13579,7 +13580,7 @@ function ImageFieldInput(props) {
+   let t9;
+   if ($[19] !== isInEditor || $[20] !== value || $[21] !== props) {
+     t9 = isInEditor && value !== null && /*#__PURE__*/jsx(TextField, {
+-      label: "Filename",
++      label: "Nombre del archivo",
+       onChange: filename => {
+         props.onChange({
+           ...value,
+@@ -13712,7 +13713,7 @@ const ImageElement = ({
+                     src: fileUpIcon
+                   })
+                 }), /*#__PURE__*/jsx(Tooltip, {
+-                  children: "Choose file"
++                  children: "Elegir archivo"
+                 })]
+               })]
+             }), /*#__PURE__*/jsx(Divider, {
+@@ -13730,7 +13731,7 @@ const ImageElement = ({
+                 })
+               }), /*#__PURE__*/jsx(Tooltip, {
+                 tone: "critical",
+-                children: "Remove"
++                children: "Quitar"
+               })]
+             })]
+           })
+@@ -13804,13 +13805,13 @@ function ImageDialog$1(props) {
+         }
+       },
+       children: [/*#__PURE__*/jsx(Heading, {
+-        children: "Image details"
++        children: "Detalles de la imagen"
+       }), /*#__PURE__*/jsx(Content, {
+         children: /*#__PURE__*/jsxs(Flex, {
+           gap: "large",
+           direction: "column",
+           children: [/*#__PURE__*/jsx(TextField, {
+-            label: "File name",
++            label: "Nombre del archivo",
+             onChange: setFileName,
+             onBlur: () => setFileNameTouched(true),
+             value: fileName,
+@@ -13880,7 +13881,7 @@ function ImageButton() {
+ const imageButton = /*#__PURE__*/jsxs(TooltipTrigger, {
+   children: [/*#__PURE__*/jsx(ImageButton, {}), /*#__PURE__*/jsx(Tooltip, {
+     children: /*#__PURE__*/jsx(Text, {
+-      children: "Image"
++      children: "Imagen"
+     })
+   })]
+ });
+@@ -14444,7 +14445,7 @@ const TableElement = ({
+                   })
+                 }), /*#__PURE__*/jsx(Tooltip, {
+                   tone: "critical",
+-                  children: "Remove"
++                  children: "Quitar"
+                 })]
+               })]
+             })
+@@ -14813,7 +14814,7 @@ function CellMenu$1(props) {
+           }, item.key)
+         })]
+       }), /*#__PURE__*/jsx(Tooltip, {
+-        children: "Options"
++        children: "Opciones"
+       })]
+     })
+   });
+@@ -15033,7 +15034,7 @@ const HeadingMenu$1 = ({
+   const isDisabled = textStyles.allowedHeadingLevels.length === 0;
+   const items = useMemo(() => {
+     let resolvedItems = [{
+-      name: 'Paragraph',
++      name: 'Párrafo',
+       id: 'normal'
+     }];
+     headingLevels.forEach(level => {
+@@ -15122,7 +15123,7 @@ function InsertBlockMenu$1() {
+         })]
+       }), /*#__PURE__*/jsxs(Tooltip, {
+         children: [/*#__PURE__*/jsx(Text, {
+-          children: "Insert"
++          children: "Insertar"
+         }), /*#__PURE__*/jsx(Kbd, {
+           children: "/"
+         })]
+@@ -15140,12 +15141,12 @@ function InsertBlockMenu$1() {
+ }
+ const inlineMarks = [{
+   key: 'bold',
+-  label: 'Bold',
++  label: 'Negrita',
+   icon: boldIcon,
+   shortcut: `B`
+ }, {
+   key: 'italic',
+-  label: 'Italic',
++  label: 'Cursiva',
+   icon: italicIcon,
+   shortcut: `I`
+ }, {
+@@ -15171,7 +15172,7 @@ const inlineMarks = [{
+   icon: subscriptIcon
+ }, {
+   key: 'clearFormatting',
+-  label: 'Clear formatting',
++  label: 'Quitar formato',
+   icon: removeFormattingIcon
+ }];
+ function InlineMarks$1({
+@@ -15287,7 +15288,7 @@ const HeadingElement = ({
+                 })
+               }), /*#__PURE__*/jsx(Tooltip, {
+                 tone: "critical",
+-                children: "Remove"
++                children: "Quitar"
+               })]
+             })]
+           })
+@@ -15463,7 +15464,7 @@ function getOptions(toolbarState, componentBlocks) {
+       });
+     }
+   }, !!toolbarState.editorDocumentFeatures.images && {
+-    label: 'Image',
++    label: 'Imagen',
+     async insert(editor) {
+       const image = await getUploadedImage();
+       if (image) {
+@@ -15482,7 +15483,7 @@ function getOptions(toolbarState, componentBlocks) {
+     label: 'Table',
+     insert: insertTable$1
+   }, !toolbarState.dividers.isDisabled && toolbarState.editorDocumentFeatures.dividers && {
+-    label: 'Divider',
++    label: 'Separador',
+     insert(editor) {
+       insertNodesButReplaceIfSelectionIsAtEmptyParagraphOrHeading(editor, {
+         type: 'divider',
+@@ -15497,7 +15498,7 @@ function getOptions(toolbarState, componentBlocks) {
+       insertLayout(editor, toolbarState.editorDocumentFeatures.layouts[0]);
+     }
+   }, !toolbarState.lists.ordered.isDisabled && toolbarState.editorDocumentFeatures.formatting.listTypes.ordered && {
+-    label: 'Numbered List',
++    label: 'Lista numerada',
+     keywords: ['ordered list'],
+     insert(editor) {
+       insertNodesButReplaceIfSelectionIsAtEmptyParagraphOrHeading(editor, {
+@@ -15508,7 +15509,7 @@ function getOptions(toolbarState, componentBlocks) {
+       });
+     }
+   }, !toolbarState.lists.unordered.isDisabled && toolbarState.editorDocumentFeatures.formatting.listTypes.unordered && {
+-    label: 'Bullet List',
++    label: 'Lista con viñetas',
+     keywords: ['unordered list'],
+     insert(editor) {
+       insertNodesButReplaceIfSelectionIsAtEmptyParagraphOrHeading(editor, {
+@@ -19104,8 +19105,8 @@ function DocumentFieldInput$1(props) {
+ 
+ const textDecoder$1 = new TextDecoder();
+ const defaultAltField$1 = text({
+-  label: 'Alt text',
+-  description: 'This text will be used by screen readers and search engines.'
++  label: 'Texto alternativo',
++  description: 'Lo usan los lectores de pantalla y los buscadores.'
+ });
+ const emptyTitleField$1 = basicFormFieldWithSimpleReaderParse({
+   Input() {
+@@ -19129,7 +19130,7 @@ const emptyTitleField$1 = basicFormFieldWithSimpleReaderParse({
+       value
+     };
+   },
+-  label: 'Title'
++  label: 'Título'
+ });
+ function normaliseDocumentFeatures(config) {
+   var _config$formatting, _formatting$alignment, _formatting$alignment2, _formatting$blockType, _formatting$inlineMar, _formatting$inlineMar2, _formatting$inlineMar3, _formatting$inlineMar4, _formatting$inlineMar5, _formatting$inlineMar6, _formatting$inlineMar7, _formatting$inlineMar8, _formatting$listTypes, _formatting$listTypes2, _imagesConfig$schema$, _imagesConfig$schema, _imagesConfig$schema$2, _imagesConfig$schema2;
+@@ -19910,7 +19911,7 @@ function FormValue(props) {
+         form: formId,
+         prominence: "high",
+         type: "submit",
+-        children: "Done"
++        children: "Listo"
+       })]
+     })]
+   });
+@@ -20269,7 +20270,7 @@ function BlockWrapper(props) {
+       UNSAFE_className: css({
+         borderBottomRightRadius: 0
+       }),
+-      children: "Edit"
++      children: "Editar"
+     });
+     $[11] = props.component.schema;
+     $[12] = t9;
+@@ -20654,10 +20655,10 @@ function getCustomNodeSpecs(components) {
+                     return true;
+                   });
+                 },
+-                children: "Insert"
++                children: "Insertar"
+               }) : /*#__PURE__*/jsxs(MenuTrigger, {
+                 children: [/*#__PURE__*/jsx(Button, {
+-                  children: "Insert"
++                  children: "Insertar"
+                 }), /*#__PURE__*/jsx(Menu, {
+                   onAction: key => {
+                     runCommand((state, dispatch) => {
+@@ -20886,7 +20887,7 @@ const nodeSpecs = {
+       return dividerDOM;
+     },
+     insertMenu: {
+-      label: 'Divider',
++      label: 'Separador',
+       description: 'A horizontal line to separate content',
+       icon: separatorHorizontalIcon,
+       command: insertNode
+@@ -20948,7 +20949,7 @@ const nodeSpecs = {
+       return ulDOM;
+     },
+     insertMenu: {
+-      label: 'Bullet list',
++      label: 'Lista con viñetas',
+       description: 'Insert an unordered list',
+       icon: listIcon,
+       command: toggleList
+@@ -20985,7 +20986,7 @@ const nodeSpecs = {
+       }, 0];
+     },
+     insertMenu: {
+-      label: 'Ordered list',
++      label: 'Lista numerada',
+       description: 'Insert an ordered list',
+       icon: listOrderedIcon,
+       command: toggleList
+@@ -21090,7 +21091,7 @@ const nodeSpecs = {
+       }
+     },
+     insertMenu: {
+-      label: 'Image',
++      label: 'Imagen',
+       description: 'Insert an image',
+       icon: imageIcon,
+       command: nodeType => {
+@@ -21645,7 +21646,7 @@ function ImageToolbarButton() {
+   let t1;
+   if ($[1] === Symbol.for("react.memo_cache_sentinel")) {
+     t1 = /*#__PURE__*/jsx(ToolbarButton, {
+-      "aria-label": "Image",
++      "aria-label": "Imagen",
+       command: t0,
+       children: /*#__PURE__*/jsx(Icon, {
+         src: imageIcon
+@@ -21660,7 +21661,7 @@ function ImageToolbarButton() {
+     t2 = /*#__PURE__*/jsxs(TooltipTrigger, {
+       children: [t1, /*#__PURE__*/jsx(Tooltip, {
+         children: /*#__PURE__*/jsx(Text, {
+-          children: "Image"
++          children: "Imagen"
+         })
+       })]
+     });
+@@ -22284,7 +22285,7 @@ function InsertMenu(props) {
+     t5 = /*#__PURE__*/jsx(EditorAutocomplete, {
+       from: props.from,
+       to: props.to,
+-      "aria-label": "Insert menu",
++      "aria-label": "Insertar",
+       items: options,
+       children: itemRenderer,
+       onEscape: t3,
+@@ -22425,7 +22426,7 @@ function LinkToolbar(props) {
+   let t11;
+   if ($[19] === Symbol.for("react.memo_cache_sentinel")) {
+     t11 = /*#__PURE__*/jsx(Tooltip, {
+-      children: "Unlink"
++      children: "Quitar link"
+     });
+     $[19] = t11;
+   } else {
+@@ -22559,7 +22560,7 @@ function LinkDialog(t0) {
+   } else {
+     t3 = $[11];
+   }
+-  const t4 = props.href ? "Edit" : "Add";
++  const t4 = props.href ? "Editar" : "Agregar";
+   let t5;
+   if ($[12] !== t4) {
+     t5 = /*#__PURE__*/jsxs(Heading, {
+@@ -22573,7 +22574,7 @@ function LinkDialog(t0) {
+   let t6;
+   if ($[14] !== props.text) {
+     t6 = /*#__PURE__*/jsx(TextField, {
+-      label: "Text",
++      label: "Texto",
+       value: props.text,
+       isReadOnly: true
+     });
+@@ -22790,7 +22791,7 @@ function ImagePopover(props) {
+   let t7;
+   if ($[12] === Symbol.for("react.memo_cache_sentinel")) {
+     t7 = /*#__PURE__*/jsx(Tooltip, {
+-      children: "Choose file"
++      children: "Elegir archivo"
+     });
+     $[12] = t7;
+   } else {
+@@ -22869,7 +22870,7 @@ function ImagePopover(props) {
+   if ($[26] === Symbol.for("react.memo_cache_sentinel")) {
+     t14 = /*#__PURE__*/jsx(Tooltip, {
+       tone: "critical",
+-      children: "Remove"
++      children: "Quitar"
+     });
+     $[26] = t14;
+   } else {
+@@ -23002,13 +23003,13 @@ function ImageDialog(props) {
+         }
+       },
+       children: [/*#__PURE__*/jsx(Heading, {
+-        children: "Image details"
++        children: "Detalles de la imagen"
+       }), /*#__PURE__*/jsx(Content, {
+         children: /*#__PURE__*/jsxs(Flex, {
+           gap: "large",
+           direction: "column",
+           children: [/*#__PURE__*/jsx(TextField, {
+-            label: "File name",
++            label: "Nombre del archivo",
+             onChange: setFileName,
+             onBlur: () => setFileNameTouched(true),
+             value: fileName,
+@@ -23095,7 +23096,7 @@ function ExtraAttributesMenuItem(props) {
+   if ($[4] === Symbol.for("react.memo_cache_sentinel")) {
+     t4 = /*#__PURE__*/jsxs(TooltipTrigger, {
+       children: [t3, /*#__PURE__*/jsx(Tooltip, {
+-        children: "Edit"
++        children: "Editar"
+       })]
+     });
+     $[4] = t4;
+@@ -23196,7 +23197,7 @@ const popoverComponents = {
+           })
+         }), /*#__PURE__*/jsx(Tooltip, {
+           tone: "critical",
+-          children: "Remove"
++          children: "Quitar"
+         })]
+       })]
+     });
+@@ -23242,7 +23243,7 @@ const popoverComponents = {
+           })
+         }), /*#__PURE__*/jsx(Tooltip, {
+           tone: "critical",
+-          children: "Remove"
++          children: "Quitar"
+         })]
+       })]
+     });
+@@ -23276,7 +23277,7 @@ const popoverComponents = {
+           })
+         }), /*#__PURE__*/jsx(Tooltip, {
+           tone: "critical",
+-          children: "Remove"
++          children: "Quitar"
+         })]
+       })]
+     });
+@@ -23478,7 +23479,7 @@ function InlineComponentPopover(props) {
+   if ($[19] === Symbol.for("react.memo_cache_sentinel")) {
+     t5 = /*#__PURE__*/jsxs(TooltipTrigger, {
+       children: [t4, /*#__PURE__*/jsx(Tooltip, {
+-        children: "Edit"
++        children: "Editar"
+       })]
+     });
+     $[19] = t5;
+@@ -23527,7 +23528,7 @@ function InlineComponentPopover(props) {
+   if ($[27] === Symbol.for("react.memo_cache_sentinel")) {
+     t9 = /*#__PURE__*/jsx(Tooltip, {
+       tone: "critical",
+-      children: "Remove"
++      children: "Quitar"
+     });
+     $[27] = t9;
+   } else {
+@@ -23663,7 +23664,7 @@ const CustomMarkPopover = props => {
+   if ($[6] === Symbol.for("react.memo_cache_sentinel")) {
+     t5 = /*#__PURE__*/jsxs(TooltipTrigger, {
+       children: [t4, /*#__PURE__*/jsx(Tooltip, {
+-        children: "Edit"
++        children: "Editar"
+       })]
+     });
+     $[6] = t5;
+@@ -23713,7 +23714,7 @@ const CustomMarkPopover = props => {
+   if ($[15] === Symbol.for("react.memo_cache_sentinel")) {
+     t9 = /*#__PURE__*/jsx(Tooltip, {
+       tone: "critical",
+-      children: "Remove"
++      children: "Quitar"
+     });
+     $[15] = t9;
+   } else {
+@@ -23981,7 +23982,7 @@ function LinkButton(props) {
+   return useMemo(() => /*#__PURE__*/jsxs(Fragment, {
+     children: [/*#__PURE__*/jsxs(TooltipTrigger, {
+       children: [/*#__PURE__*/jsx(ToolbarButton, {
+-        "aria-label": "Divider",
++        "aria-label": "Separador",
+         command: (state_0, dispatch) => {
+           const aroundFrom = markAround(state_0.selection.$from, props.link);
+           const aroundTo = markAround(state_0.selection.$to, props.link);
+@@ -24040,12 +24041,12 @@ const Toolbar = /*#__PURE__*/memo(function Toolbar(props) {
+       children: [nodes.heading && /*#__PURE__*/jsx(HeadingMenu, {
+         headingType: nodes.heading
+       }), /*#__PURE__*/jsxs(EditorToolbar, {
+-        "aria-label": "Formatting options",
++        "aria-label": "Opciones de formato",
+         children: [/*#__PURE__*/jsx(EditorToolbarSeparator, {}), /*#__PURE__*/jsx(InlineMarks, {}), /*#__PURE__*/jsx(EditorToolbarSeparator, {}), /*#__PURE__*/jsx(ListButtons, {}), /*#__PURE__*/jsx(EditorToolbarSeparator, {}), /*#__PURE__*/jsxs(EditorToolbarGroup, {
+-          "aria-label": "Blocks",
++          "aria-label": "Bloques",
+           children: [nodes.divider && /*#__PURE__*/jsxs(TooltipTrigger, {
+             children: [/*#__PURE__*/jsx(ToolbarButton, {
+-              "aria-label": "Divider",
++              "aria-label": "Separador",
+               command: insertNode(nodes.divider),
+               isSelected: typeInSelection(nodes.divider),
+               children: /*#__PURE__*/jsx(Icon, {
+@@ -24053,7 +24054,7 @@ const Toolbar = /*#__PURE__*/memo(function Toolbar(props) {
+               })
+             }), /*#__PURE__*/jsxs(Tooltip, {
+               children: [/*#__PURE__*/jsx(Text, {
+-                children: "Divider"
++                children: "Separador"
+               }), /*#__PURE__*/jsx(Kbd, {
+                 children: "---"
+               })]
+@@ -24248,7 +24249,7 @@ const HeadingMenu = props => {
+   } = useEditorSchema();
+   const items = useMemo(() => {
+     let resolvedItems = [{
+-      name: 'Paragraph',
++      name: 'Párrafo',
+       id: 'normal'
+     }];
+     config.heading.levels.forEach(level => {
+@@ -24309,7 +24310,7 @@ function InsertBlockMenu() {
+         })]
+       }), /*#__PURE__*/jsxs(Tooltip, {
+         children: [/*#__PURE__*/jsx(Text, {
+-          children: "Insert"
++          children: "Insertar"
+         }), /*#__PURE__*/jsx(Kbd, {
+           children: "/"
+         })]
+@@ -24348,7 +24349,7 @@ function InlineMarks() {
+     if (schema.marks.bold) {
+       marks.push({
+         key: 'bold',
+-        label: 'Bold',
++        label: 'Negrita',
+         icon: boldIcon,
+         shortcut: `B`,
+         command: toggleMark(schema.marks.bold),
+@@ -24358,7 +24359,7 @@ function InlineMarks() {
+     if (schema.marks.italic) {
+       marks.push({
+         key: 'italic',
+-        label: 'Italic',
++        label: 'Cursiva',
+         icon: italicIcon,
+         shortcut: `I`,
+         command: toggleMark(schema.marks.italic),
+@@ -24395,7 +24396,7 @@ function InlineMarks() {
+     }
+     marks.push({
+       key: 'clearFormatting',
+-      label: 'Clear formatting',
++      label: 'Quitar formato',
+       icon: removeFormattingIcon,
+       command: removeAllMarks(),
+       isSelected: () => false
+@@ -24406,7 +24407,7 @@ function InlineMarks() {
+   const disabledKeys = useMemoStringified(inlineMarks.filter(val_1 => !val_1.command(state)).map(val_2 => val_2.key));
+   return useMemo(() => {
+     return /*#__PURE__*/jsx(EditorToolbarGroup, {
+-      "aria-label": "Text formatting",
++      "aria-label": "Formato de texto",
+       value: selectedKeys,
+       onChange: key => {
+         const mark_0 = inlineMarks.find(mark => mark.key === key);
+@@ -24460,12 +24461,12 @@ function ListButtons() {
+   const activeListType = getActiveListType(state, schema);
+   const items = useMemo(() => {
+     return [!!schema.nodes.unordered_list && {
+-      label: 'Bullet list',
++      label: 'Lista con viñetas',
+       key: 'unordered_list',
+       shortcut: '-',
+       icon: listIcon
+     }, !!schema.nodes.ordered_list && {
+-      label: 'Numbered list',
++      label: 'Lista numerada',
+       key: 'ordered_list',
+       shortcut: '1.',
+       icon: listOrderedIcon
+@@ -24479,7 +24480,7 @@ function ListButtons() {
+       return null;
+     }
+     return /*#__PURE__*/jsx(EditorToolbarGroup, {
+-      "aria-label": "Lists",
++      "aria-label": "Listas",
+       value: activeListType,
+       onChange: key => {
+         const format = key;
+@@ -24869,7 +24870,7 @@ function CellMenu() {
+   let t7;
+   if ($[9] === Symbol.for("react.memo_cache_sentinel")) {
+     t7 = /*#__PURE__*/jsx(Tooltip, {
+-      children: "Options"
++      children: "Opciones"
+     });
+     $[9] = t7;
+   } else {
+@@ -27538,8 +27539,8 @@ function createEditorStateFromYJS(schema, yXmlFragment, awareness) {
+ }
+ 
+ const defaultAltField = text({
+-  label: 'Alt text',
+-  description: 'This text will be used by screen readers and search engines.'
++  label: 'Texto alternativo',
++  description: 'Lo usan los lectores de pantalla y los buscadores.'
+ });
+ const emptyTitleField = basicFormFieldWithSimpleReaderParse({
+   Input() {
+@@ -27563,7 +27564,7 @@ const emptyTitleField = basicFormFieldWithSimpleReaderParse({
+       value
+     };
+   },
+-  label: 'Title'
++  label: 'Título'
+ });
+ function editorOptionsToConfig(options) {
+   var _options$bold, _options$italic, _options$strikethroug, _options$code, _options$blockquote, _options$orderedList, _options$unorderedLis, _options$table, _options$link, _options$divider;
+diff --git a/dist/keystatic-core-ui.js b/dist/keystatic-core-ui.js
+index d16d2e027f1040ef5f2142c17f05eb5916991d33..3617717d8f92dbd9857394fd0406bf1c935bbcb0 100644
+--- a/dist/keystatic-core-ui.js
++++ b/dist/keystatic-core-ui.js
+@@ -876,7 +876,7 @@ function CollectionPageHeader(props) {
+   let t16;
+   if ($[34] !== t13 || $[35] !== t14) {
+     t16 = /*#__PURE__*/jsx(ActionButton, {
+-      "aria-label": "show search",
++      "aria-label": "mostrar búsqueda",
+       isHidden: t13,
+       onPress: t14,
+       children: t15
+@@ -946,7 +946,7 @@ function CollectionPageContent(props) {
+       t0 = /*#__PURE__*/jsx(Button, {
+         tone: "accent",
+         href: props.basePath,
+-        children: "Dashboard"
++        children: "Panel"
+       });
+       $[0] = props.basePath;
+       $[1] = t0;
+@@ -974,7 +974,7 @@ function CollectionPageContent(props) {
+     if ($[5] === Symbol.for("react.memo_cache_sentinel")) {
+       t0 = /*#__PURE__*/jsx(EmptyState, {
+         children: /*#__PURE__*/jsx(ProgressCircle, {
+-          "aria-label": "Loading Entries",
++          "aria-label": "Cargando…",
+           isIndeterminate: true,
+           size: "large"
+         })
+@@ -991,11 +991,11 @@ function CollectionPageContent(props) {
+     if ($[6] !== t0) {
+       t1 = /*#__PURE__*/jsx(EmptyState, {
+         icon: listXIcon,
+-        title: "Empty collection",
++        title: "Todavía no hay nada",
+         message: /*#__PURE__*/jsxs(Fragment, {
+-          children: ["There aren't any entries yet.", " ", /*#__PURE__*/jsx(TextLink, {
++          children: ["Todavía no hay nada.", " ", /*#__PURE__*/jsx(TextLink, {
+             href: t0,
+-            children: "Create the first entry"
++            children: "Crear la primera"
+           }), " ", "to see it here."]
+         })
+       });
+@@ -1128,12 +1128,12 @@ function CollectionTable(props) {
+     var _collection$columns2;
+     if ((_collection$columns2 = collection.columns) !== null && _collection$columns2 !== void 0 && _collection$columns2.length) {
+       return [...(hideStatusColumn ? [] : [{
+-        name: 'Status',
++        name: 'Estado',
+         key: STATUS,
+         minWidth: 32,
+         width: 32
+       }]), {
+-        name: 'Slug',
++        name: 'Dirección',
+         key: SLUG
+       }, ...collection.columns.map(column => {
+         const schema_0 = collection.schema[column];
+@@ -1147,7 +1147,7 @@ function CollectionTable(props) {
+       name: 'Name',
+       key: SLUG
+     }] : [{
+-      name: 'Status',
++      name: 'Estado',
+       key: STATUS,
+       minWidth: 32,
+       width: 32
+@@ -1169,7 +1169,7 @@ function CollectionTable(props) {
+     },
+     renderEmptyState: () => /*#__PURE__*/jsx(EmptyState, {
+       icon: searchXIcon,
+-      title: "No results",
++      title: "Sin resultados",
+       message: `No items matching "${searchTerm}" were found.`
+     }),
+     flex: true,
+@@ -1203,7 +1203,7 @@ function CollectionTable(props) {
+         allowsSorting: true,
+         ...options,
+         children: /*#__PURE__*/jsx(Icon, {
+-          "aria-label": "Status",
++          "aria-label": "Estado",
+           src: diffIcon
+         })
+       }, key_0) : /*#__PURE__*/jsx(Column, {
+@@ -3664,7 +3664,7 @@ function HeaderActions(props) {
+   if ($[0] === Symbol.for("react.memo_cache_sentinel")) {
+     t1 = {
+       key: "reset",
+-      label: "Reset changes",
++      label: "Deshacer cambios",
+       icon: historyIcon
+     };
+     $[0] = t1;
+@@ -3675,7 +3675,7 @@ function HeaderActions(props) {
+   if ($[1] === Symbol.for("react.memo_cache_sentinel")) {
+     t2 = {
+       key: "delete",
+-      label: "Delete entry\u2026",
++      label: "Eliminar entrada\u2026",
+       icon: trash2Icon
+     };
+     $[1] = t2;
+@@ -3686,7 +3686,7 @@ function HeaderActions(props) {
+   if ($[2] === Symbol.for("react.memo_cache_sentinel")) {
+     t3 = {
+       key: "copy",
+-      label: "Copy entry",
++      label: "Copiar entrada",
+       icon: clipboardCopyIcon
+     };
+     $[2] = t3;
+@@ -3697,7 +3697,7 @@ function HeaderActions(props) {
+   if ($[3] === Symbol.for("react.memo_cache_sentinel")) {
+     t4 = {
+       key: "paste",
+-      label: "Paste entry",
++      label: "Pegar entrada",
+       icon: clipboardPasteIcon
+     };
+     $[3] = t4;
+@@ -3708,7 +3708,7 @@ function HeaderActions(props) {
+   if ($[4] === Symbol.for("react.memo_cache_sentinel")) {
+     t5 = {
+       key: "duplicate",
+-      label: "Duplicate entry\u2026",
++      label: "Duplicar entrada\u2026",
+       icon: copyPlusIcon
+     };
+     $[4] = t5;
+@@ -3723,7 +3723,7 @@ function HeaderActions(props) {
+       if ($[8] !== previewHref) {
+         t6 = {
+           key: "preview",
+-          label: "Preview",
++          label: "Ver página",
+           icon: externalLinkIcon,
+           href: previewHref,
+           target: "_blank",
+@@ -3768,7 +3768,7 @@ function HeaderActions(props) {
+       let t7;
+       if ($[12] === Symbol.for("react.memo_cache_sentinel")) {
+         t7 = /*#__PURE__*/jsx(ProgressCircle, {
+-          "aria-label": "Saving changes",
++          "aria-label": "Guardando…",
+           isIndeterminate: true,
+           size: "small",
+           alignSelf: "center"
+@@ -3790,11 +3790,11 @@ function HeaderActions(props) {
+           borderRadius: "full",
+           children: /*#__PURE__*/jsx(Text, {
+             visuallyHidden: true,
+-            children: "Unsaved"
++            children: "Sin guardar"
+           })
+         }) : /*#__PURE__*/jsx(Badge, {
+           tone: "pending",
+-          children: "Unsaved"
++          children: "Sin guardar"
+         });
+         $[13] = isBelowDesktop;
+         $[14] = t7;
+@@ -3923,14 +3923,15 @@ function HeaderActions(props) {
+     t14 = $[32];
+   }
+   let t15;
+-  if ($[33] !== formID || $[34] !== isLoading || $[35] !== t14) {
+-    t15 = /*#__PURE__*/jsx(Button, {
++  // sophi-web: botón visible "Ver página" junto a Guardar
++  if (true) {
++    t15 = /*#__PURE__*/jsxs(Fragment, { children: [previewHref ? /*#__PURE__*/jsx(Button, { href: previewHref, target: "_blank", rel: "noopener noreferrer", children: "Ver página" }) : null, /*#__PURE__*/jsx(Button, {
+       form: formID,
+       isDisabled: isLoading,
+       prominence: "high",
+       type: "submit",
+       children: t14
+-    });
++    })] });
+     $[33] = formID;
+     $[34] = isLoading;
+     $[35] = t14;
+@@ -3948,13 +3949,13 @@ function HeaderActions(props) {
+   let t17;
+   if ($[38] !== deleteAlertIsOpen || $[39] !== onDelete) {
+     t17 = deleteAlertIsOpen && /*#__PURE__*/jsx(AlertDialog, {
+-      title: "Delete entry",
++      title: "Eliminar entrada",
+       tone: "critical",
+-      cancelLabel: "Cancel",
+-      primaryActionLabel: "Yes, delete",
++      cancelLabel: "Cancelar",
++      primaryActionLabel: "Sí, eliminar",
+       autoFocusButton: "cancel",
+       onPrimaryAction: onDelete,
+-      children: "Are you sure? This action cannot be undone."
++      children: "¿Seguro? Esto no se puede deshacer."
+     });
+     $[38] = deleteAlertIsOpen;
+     $[39] = onDelete;
+@@ -3983,13 +3984,13 @@ function HeaderActions(props) {
+   let t20;
+   if ($[44] !== duplicateAlertIsOpen || $[45] !== onDuplicate) {
+     t20 = duplicateAlertIsOpen && /*#__PURE__*/jsx(AlertDialog, {
+-      title: "Save and duplicate entry",
++      title: "Guardar y duplicar",
+       tone: "neutral",
+-      cancelLabel: "Cancel",
+-      primaryActionLabel: "Save and duplicate",
++      cancelLabel: "Cancelar",
++      primaryActionLabel: "Guardar y duplicar",
+       autoFocusButton: "primary",
+       onPrimaryAction: onDuplicate,
+-      children: "You have unsaved changes. Save this entry to duplicate it."
++      children: "Tenés cambios sin guardar. Guardá antes de duplicar."
+     });
+     $[44] = duplicateAlertIsOpen;
+     $[45] = onDuplicate;
+@@ -4312,7 +4313,7 @@ function ItemPageOuterWrapper(props) {
+       children: /*#__PURE__*/jsx(PageBody, {
+         children: /*#__PURE__*/jsx(Notice, {
+           tone: "caution",
+-          children: "Entry not found."
++          children: "No se encontró la entrada."
+         })
+       })
+     }),
+@@ -4334,7 +4335,7 @@ function ItemPageOuterWrapper(props) {
+             justifyContent: "center",
+             minHeight: "scale.3000",
+             children: /*#__PURE__*/jsx(ProgressCircle, {
+-              "aria-label": "Loading Item",
++              "aria-label": "Cargando…",
+               isIndeterminate: true,
+               size: "large"
+             })
+@@ -4715,7 +4716,7 @@ function CreateItemWrapper(props) {
+         justifyContent: "center",
+         minHeight: "scale.3000",
+         children: /*#__PURE__*/jsx(ProgressCircle, {
+-          "aria-label": "Loading Item",
++          "aria-label": "Cargando…",
+           isIndeterminate: true,
+           size: "large"
+         })
+@@ -4732,7 +4733,7 @@ function CreateItemWrapper(props) {
+       t9 = /*#__PURE__*/jsx(PageBody, {
+         children: /*#__PURE__*/jsx(Notice, {
+           tone: "caution",
+-          children: "Entry not found."
++          children: "No se encontró la entrada."
+         })
+       });
+       $[38] = t9;
+@@ -5292,7 +5293,7 @@ function CreateItemInner(props) {
+   let t12;
+   if ($[35] !== isLoading) {
+     t12 = isLoading && /*#__PURE__*/jsx(ProgressCircle, {
+-      "aria-label": "Creating entry",
++      "aria-label": "Creando…",
+       isIndeterminate: true,
+       size: "small"
+     });
+@@ -5563,15 +5564,15 @@ function CreateItemInner(props) {
+ }
+ const menuActions = [{
+   key: 'reset',
+-  label: 'Reset',
++  label: 'Deshacer cambios',
+   icon: historyIcon
+ }, {
+   key: 'copy',
+-  label: 'Copy entry',
++  label: 'Copiar entrada',
+   icon: clipboardCopyIcon
+ }, {
+   key: 'paste',
+-  label: 'Paste entry',
++  label: 'Pegar entrada',
+   icon: clipboardPasteIcon
+ }];
+ 
+@@ -5995,7 +5996,7 @@ function renderItemOrGroup(itemOrGroup) {
+       gap: "medium",
+       alignItems: "center",
+       children: [changeElement, /*#__PURE__*/jsx(ActionButton, {
+-        "aria-label": "Add",
++        "aria-label": "Agregar",
+         href: `${itemOrGroup.href}/create`,
+         children: /*#__PURE__*/jsx(Icon, {
+           src: plusIcon
+@@ -6010,8 +6011,8 @@ function renderItemOrGroup(itemOrGroup) {
+     children: typeof itemOrGroup.entryCount === 'number' ? /*#__PURE__*/jsx(Text, {
+       color: "neutralSecondary",
+       children: pluralize(itemOrGroup.entryCount, {
+-        singular: 'entry',
+-        plural: 'entries'
++        singular: 'entrada',
++        plural: 'entradas'
+       })
+     }) : null
+   }, itemOrGroup.key);
+@@ -6462,7 +6463,7 @@ function SingletonPageInner(props) {
+   if ($[13] === Symbol.for("react.memo_cache_sentinel")) {
+     t4 = {
+       key: "reset",
+-      label: "Reset",
++      label: "Deshacer cambios",
+       icon: historyIcon
+     };
+     $[13] = t4;
+@@ -6473,7 +6474,7 @@ function SingletonPageInner(props) {
+   if ($[14] === Symbol.for("react.memo_cache_sentinel")) {
+     t5 = {
+       key: "copy",
+-      label: "Copy entry",
++      label: "Copiar entrada",
+       icon: clipboardCopyIcon
+     };
+     $[14] = t5;
+@@ -6484,7 +6485,7 @@ function SingletonPageInner(props) {
+   if ($[15] === Symbol.for("react.memo_cache_sentinel")) {
+     t6 = {
+       key: "paste",
+-      label: "Paste entry",
++      label: "Pegar entrada",
+       icon: clipboardPasteIcon
+     };
+     $[15] = t6;
+@@ -6499,7 +6500,7 @@ function SingletonPageInner(props) {
+       if ($[19] !== previewHref) {
+         t7 = {
+           key: "preview",
+-          label: "Preview",
++          label: "Ver página",
+           icon: externalLinkIcon,
+           href: previewHref,
+           target: "_blank",
+@@ -6626,7 +6627,7 @@ function SingletonPageInner(props) {
+       alignSelf: "center"
+     }) : props.hasChanged && /*#__PURE__*/jsx(Badge, {
+       tone: "pending",
+-      children: "Unsaved"
++      children: "Sin guardar"
+     });
+     $[39] = props;
+     $[40] = singletonConfig;
+@@ -6730,16 +6731,17 @@ function SingletonPageInner(props) {
+     t19 = $[57];
+   }
+   const t20 = props.updateResult.kind === "loading";
+-  const t21 = isCreating ? "Create" : "Save";
++  const t21 = isCreating ? "Crear" : "Guardar";
+   let t22;
+-  if ($[58] !== t20 || $[59] !== t21) {
+-    t22 = /*#__PURE__*/jsx(Button, {
++  // sophi-web: botón visible "Ver página" junto a Guardar
++  if (true) {
++    t22 = /*#__PURE__*/jsxs(Fragment, { children: [previewHref ? /*#__PURE__*/jsx(Button, { href: previewHref, target: "_blank", rel: "noopener noreferrer", children: "Ver página" }) : null, /*#__PURE__*/jsx(Button, {
+       form: "singleton-form",
+       isDisabled: t20,
+       prominence: "high",
+       type: "submit",
+       children: t21
+-    });
++    })] });
+     $[58] = t20;
+     $[59] = t21;
+     $[60] = t22;
+@@ -8157,7 +8159,7 @@ function PageInner(t0) {
+       let t3;
+       if ($[19] === Symbol.for("react.memo_cache_sentinel")) {
+         t3 = /*#__PURE__*/jsx(Text, {
+-          children: "Not found"
++          children: "No encontrado"
+         });
+         $[19] = t3;
+       } else {
+@@ -8195,8 +8197,8 @@ function PageInner(t0) {
+       children: /*#__PURE__*/jsx(PageBody, {
+         children: /*#__PURE__*/jsx(EmptyState, {
+           icon: fileX2Icon,
+-          title: "Not found",
+-          message: "This page could not be found."
++          title: "No encontrado",
++          message: "No se encontró esta página."
+         })
+       })
+     });
+diff --git a/dist/keystatic-core.js b/dist/keystatic-core.js
+index 6dc24abb8b8d896006919ba27540f13743ee40d0..d1cd5cc4811e469e753d9a4510635c9c4b98a9ac 100644
+--- a/dist/keystatic-core.js
++++ b/dist/keystatic-core.js
+@@ -179,7 +179,7 @@ function array(element, opts) {
+   return {
+     kind: 'array',
+     element,
+-    label: (_opts$label = opts === null || opts === void 0 ? void 0 : opts.label) !== null && _opts$label !== void 0 ? _opts$label : 'Items',
++    label: (_opts$label = opts === null || opts === void 0 ? void 0 : opts.label) !== null && _opts$label !== void 0 ? _opts$label : 'Elementos',
+     description: opts === null || opts === void 0 ? void 0 : opts.description,
+     itemLabel: opts === null || opts === void 0 ? void 0 : opts.itemLabel,
+     asChildTag: opts === null || opts === void 0 ? void 0 : opts.asChildTag,
+@@ -386,7 +386,7 @@ function BlocksFieldInput(props) {
+   if ($[14] === Symbol.for("react.memo_cache_sentinel")) {
+     t7 = /*#__PURE__*/jsx(ActionButton, {
+       alignSelf: "start",
+-      children: "Add"
++      children: "Agregar"
+     });
+     $[14] = t7;
+   } else {
+@@ -495,7 +495,7 @@ function BlocksFieldInput(props) {
+       let t16;
+       if ($[30] !== t15) {
+         t16 = /*#__PURE__*/jsxs(Heading, {
+-          children: ["Edit", " ", t15]
++          children: ["Editar", " ", t15]
+         });
+         $[30] = t15;
+         $[31] = t16;
+@@ -524,7 +524,7 @@ function BlocksFieldInput(props) {
+             form: formId,
+             prominence: "high",
+             type: "submit",
+-            children: "Done"
++            children: "Listo"
+           })
+         });
+         $[36] = formId;
+@@ -561,7 +561,7 @@ function BlocksFieldInput(props) {
+     let t16;
+     if ($[45] !== t15) {
+       t16 = /*#__PURE__*/jsxs(Heading, {
+-        children: ["Add", " ", t15]
++        children: ["Agregar", " ", t15]
+       });
+       $[45] = t15;
+       $[46] = t16;
+@@ -1121,7 +1121,7 @@ function ImageField(props) {
+           }
+         })
+       }), /*#__PURE__*/jsx(TextArea, {
+-        label: "Alt text",
++        label: "Texto alternativo",
+         value: image.alt,
+         onChange: alt => props.onChange({
+           ...image,
+@@ -1322,13 +1322,13 @@ function cloudImage({
+         }
+       }),
+       alt: text({
+-        label: 'Alt text'
++        label: 'Texto alternativo'
+       }),
+       height: integer({
+-        label: 'Height'
++        label: 'Alto'
+       }),
+       width: integer({
+-        label: 'Width'
++        label: 'Ancho'
+       })
+     }, {
+       label,
+@@ -1659,7 +1659,7 @@ function empty() {
+     validate(value) {
+       return value;
+     },
+-    label: 'Empty'
++    label: 'Vacío'
+   });
+ }
+ 
+@@ -1793,7 +1793,7 @@ function FileFieldInput(props) {
+           });
+         }
+       },
+-      children: "Choose file"
++      children: "Elegir archivo"
+     });
+     $[8] = props;
+     $[9] = t5;
+@@ -1809,12 +1809,12 @@ function FileFieldInput(props) {
+           props.onChange(null);
+           onBlur();
+         },
+-        children: "Remove"
++        children: "Quitar"
+       }), objectUrl && /*#__PURE__*/jsx(Button, {
+         href: objectUrl,
+         download: value.filename,
+         prominence: "low",
+-        children: "Download"
++        children: "Descargar"
+       })]
+     });
+     $[10] = value;
+@@ -1839,7 +1839,7 @@ function FileFieldInput(props) {
+   let t8;
+   if ($[18] !== isInEditor || $[19] !== value || $[20] !== props) {
+     t8 = isInEditor && value !== null && /*#__PURE__*/jsx(TextField, {
+-      label: "Filename",
++      label: "Nombre del archivo",
+       onChange: filename => {
+         props.onChange({
+           ...value,
+@@ -2230,11 +2230,11 @@ function MultiRelationshipListView(props) {
+         }
+       },
+       children: /*#__PURE__*/jsxs(Item$2, {
+-        textValue: "Remove",
++        textValue: "Quitar",
+         children: [/*#__PURE__*/jsx(Icon, {
+           src: trash2Icon
+         }), /*#__PURE__*/jsx(Text, {
+-          children: "Remove"
++          children: "Quitar"
+         })]
+       }, "delete")
+     })]
+@@ -2941,7 +2941,7 @@ function SlugFieldInput(props) {
+                 display: 'none'
+               }
+             }),
+-            children: "Regenerate"
++            children: "Regenerar"
+           })]
+         }), slugErrorMessage !== undefined && /*#__PURE__*/jsx(Box, {
+           height: "element.xsmall"
+@@ -3030,7 +3030,7 @@ function slug(_args) {
+     if (nameMessage !== undefined) {
+       throw new FieldDataError(nameMessage);
+     }
+-    const slugMessage = validateText(value.slug, (_args$slug$validation = (_args$slug2 = args.slug) === null || _args$slug2 === void 0 || (_args$slug2 = _args$slug2.validation) === null || _args$slug2 === void 0 || (_args$slug2 = _args$slug2.length) === null || _args$slug2 === void 0 ? void 0 : _args$slug2.min) !== null && _args$slug$validation !== void 0 ? _args$slug$validation : 1, (_args$slug$validation2 = (_args$slug3 = args.slug) === null || _args$slug3 === void 0 || (_args$slug3 = _args$slug3.validation) === null || _args$slug3 === void 0 || (_args$slug3 = _args$slug3.length) === null || _args$slug3 === void 0 ? void 0 : _args$slug3.max) !== null && _args$slug$validation2 !== void 0 ? _args$slug$validation2 : Infinity, (_args$slug$label = (_args$slug4 = args.slug) === null || _args$slug4 === void 0 ? void 0 : _args$slug4.label) !== null && _args$slug$label !== void 0 ? _args$slug$label : 'Slug', slugField ? slugField : {
++    const slugMessage = validateText(value.slug, (_args$slug$validation = (_args$slug2 = args.slug) === null || _args$slug2 === void 0 || (_args$slug2 = _args$slug2.validation) === null || _args$slug2 === void 0 || (_args$slug2 = _args$slug2.length) === null || _args$slug2 === void 0 ? void 0 : _args$slug2.min) !== null && _args$slug$validation !== void 0 ? _args$slug$validation : 1, (_args$slug$validation2 = (_args$slug3 = args.slug) === null || _args$slug3 === void 0 || (_args$slug3 = _args$slug3.validation) === null || _args$slug3 === void 0 || (_args$slug3 = _args$slug3.length) === null || _args$slug3 === void 0 ? void 0 : _args$slug3.max) !== null && _args$slug$validation2 !== void 0 ? _args$slug$validation2 : Infinity, (_args$slug$label = (_args$slug4 = args.slug) === null || _args$slug4 === void 0 ? void 0 : _args$slug4.label) !== null && _args$slug$label !== void 0 ? _args$slug$label : 'Dirección', slugField ? slugField : {
+       slugs: emptySet,
+       glob: '*'
+     }, (_args$slug5 = args.slug) === null || _args$slug5 === void 0 || (_args$slug5 = _args$slug5.validation) === null || _args$slug5 === void 0 ? void 0 : _args$slug5.pattern);

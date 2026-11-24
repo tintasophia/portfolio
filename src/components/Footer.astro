@@ -1,8 +1,9 @@
 ---
 import { getEntry } from "astro:content";
 import site from "../data/site.json";
-const hero = await getEntry("home", "hero");
-const tabs = hero?.data.section === "hero" ? hero.data.tabs : [];
+const hero = await getEntry("hero", "hero");
+const t = hero?.data.tabs;
+const tabs = t ? [{ id: "1", label: t.trabajos }, { id: "2", label: t.sobreMi }, { id: "3", label: t.aPedido }] : [];
 const year = new Date().getFullYear();
 const link = "text-ink block text-[14px] leading-normal underline-offset-4 hover:underline";
 ---

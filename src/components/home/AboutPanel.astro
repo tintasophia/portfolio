@@ -2,16 +2,15 @@
 import { render, type CollectionEntry } from "astro:content";
 import Carousel from "./Carousel.astro";
 interface Props {
-  entry: CollectionEntry<"home">;
+  entry: CollectionEntry<"sobreMi">;
 }
 const { entry } = Astro.props;
-if (entry.data.section !== "sobre-mi") throw new Error("AboutPanel espera la entrada sobre-mi");
 const { greeting, lead, photos, interval } = entry.data;
 const { Content } = await render(entry);
 ---
 
 <section
-  data-panel="sobre-mi"
+  data-panel="2"
   class="animate-panel-in motion-reduce:animate-none"
 >
   <div
