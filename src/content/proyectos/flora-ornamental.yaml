@@ -46,13 +46,17 @@ blocks:
     value:
       images:
         - src: ../../assets/img/flora-ornamental/img-1400-z0d2.png
-          alt: aa
+          alt: >-
+            Azafrán blanco y gris con estambres rojos, dentro de un marco ornamental agrietado con hojas, puntillismo y detalles en rojo
         - src: ../../assets/img/flora-ornamental/img-0455-zjan.png
-          alt: asd
+          alt: >-
+            Pájaro gris sobre una rama con espinas, dentro de un marco ornamental rojo con hojas, en puntillismo
   - discriminant: images
     value:
       images:
         - src: ../../assets/img/flora-ornamental/img-0306-lqxm.png
-          alt: ff
+          alt: >-
+            Rama con flores, capullos y hojas rayadas, una abeja y finas telarañas, en blanco y negro
         - src: ../../assets/img/flora-ornamental/img-1406-40kq.png
-          alt: jjg
+          alt: >-
+            Rosa con hojas y brillos sobre manchas de pincel grises, en blanco y negro con puntillismo

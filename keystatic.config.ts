@@ -319,7 +319,6 @@ export default config({
           { label: "Bloques", itemLabel: (p) => p.fields.title.value || "Bloque" },
         ),
         note: fields.text({ label: "Nota final", multiline: true }),
-        contactTitle: fields.text({ label: "Frase de la tarjeta de contacto", description: "Va arriba del mail y del botón." }),
         image: picture("Ilustración", "a-pedido"),
         imageMobile: picture("Ilustración (versión celular)", "a-pedido"),
       },

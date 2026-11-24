@@ -81,7 +81,6 @@ const aPedido = defineCollection({
         }),
       ),
       note: z.string().optional(),
-      contactTitle: z.string().optional(), // frase de la tarjeta de contacto ("¿Arrancamos?")
       image: z.object({ src: image(), alt: z.string().min(1) }).optional(),
       imageMobile: z.object({ src: image(), alt: z.string().min(1) }).optional(), // recorte para < 810px
     }),
