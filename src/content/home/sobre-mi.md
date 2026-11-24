@@ -16,7 +16,7 @@ photos:
       sobre papel
 interval: 4.2
 ---
-Trabajo principalmente con ilustración digital, aunque me gusta moverme entre diferentes estilos y formas. El dibujo me acompaña desde chica y siempre fue una forma de explorar ideas, experimentar y expresarme.
+Trabajo principalmente con ilustración digital, aunque me gusta moverme entre diferentes formatos. El dibujo me acompaña desde chica y siempre fue una forma de explorar ideas, experimentar y expresarme.
 
 Encuentro inspiración en diferentes lugares: desde la naturaleza y la música hasta la animación, el tatuaje y las expresiones gráficas de otras culturas. Me gusta jugar con los detalles y encontrar belleza tanto en lo delicado y tierno como en lo oscuro.
 

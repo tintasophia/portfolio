@@ -48,8 +48,8 @@
   --color-glass-badge: rgb(255 255 255 / 0.78); /* badge de categoría sobre imagen (literal) */
   --color-line: #10111414; /* bordes/divisores (rgba .08) */
   --color-accent: #ff5b2e; /* naranja */
-  --color-accent-2: #ca95ed; /* violeta claro: fondo del footer y stats */
-  --color-violet: #9f5fc9; /* violeta del "&" */
+  --color-accent-2: #39826c; /* violeta claro: fondo del footer y stats */
+  --color-violet: #ca95ed; /* violeta del "&" */
   --color-dot: rgb(255 255 255 / 0.7); /* puntito del carrusel */
   --color-dot-active: #fff; /* puntito del carrusel, foto actual */
 

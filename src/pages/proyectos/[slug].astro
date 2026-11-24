@@ -10,7 +10,7 @@ export async function getStaticPaths() {
   const all = await getProyectosOrdenados();
   return all.map((project) => ({
     params: { slug: project.id },
-    props: { project, related: all.filter((p) => p.id !== project.id).slice(0, 2) },
+    props: { project, related: all.filter((p) => p.id !== project.id).slice(0, 3) },
   }));
 }
 const { project, related } = Astro.props;
@@ -19,6 +19,13 @@ const t = site.projectPage;
 const sizes = "(min-width: 1232px) 1184px, 100vw";
 const pairSizes = "(min-width: 1232px) 584px, (min-width: 810px) 48vw, 100vw";
 const firstImage = d.blocks.findIndex((b) => b.type !== "text");
+
+// Solo "Flores del sur": el segundo par de fotos queda con una sola foto (la de la izquierda)
+// y, en tablet/desktop, el texto "Detrás de la ilustración" ocupa el lugar de la otra.
+const soloUna = project.id === "flores-del-sur";
+const pairIdx = soloUna ? d.blocks.map((b, i) => (b.type === "images" ? i : -1)).filter((i) => i >= 0)[1] ?? -1 : -1;
+const sideIdx = pairIdx >= 0 ? d.blocks.findIndex((b, i) => i > pairIdx && b.type === "text") : -1;
+const sideText = sideIdx >= 0 ? d.blocks[sideIdx] : undefined;
 ---
 <Base title={`${d.title} — ${site.name}`} description={d.description} image={d.cover.src}>
   <article class="mx-auto w-full max-w-308 px-5 md:px-6">
@@ -45,7 +52,7 @@ const firstImage = d.blocks.findIndex((b) => b.type !== "text");
       const fetchpriority = priority ? ("high" as const) : undefined;
       if (b.type === "hero") {
         return (
-          <div class="pt-9 md:pt-14">
+          <div class="pt-9 md:pt-10.5">
             <div class="bg-media relative aspect-video overflow-clip rounded-hero-sm md:rounded-hero">
               <Img src={b.image.src} alt={b.image.alt} widths={[640, 960, 1280, 1800]} sizes={sizes} loading={loading} fetchpriority={fetchpriority} />
             </div>
@@ -54,8 +61,8 @@ const firstImage = d.blocks.findIndex((b) => b.type !== "text");
       }
       if (b.type === "text") {
         return (
-          <section class="pt-15.5 md:pt-15 lg:pt-18">
-            <div class="flex max-w-225 flex-col gap-3">
+          <section class:list={["pt-9 md:pt-10.5 lg:pt-10.5", i === sideIdx && "md:hidden"]}>
+            <div class:list={["flex max-w-225 flex-col gap-3", soloUna && "lg:w-1/2 lg:max-w-[560px]"]}>
               <h2 class="text-h4">{b.title}</h2>
               <div class="text-body-lg text-ink-2 flex flex-col gap-4 [&_a]:underline" set:html={marked.parse(b.body.trim()) as string} />
             </div>
@@ -64,12 +71,18 @@ const firstImage = d.blocks.findIndex((b) => b.type !== "text");
       }
       if (b.type === "images") {
         return (
-          <div class="flex flex-col gap-6 pt-13 md:flex-row md:gap-4 md:pt-15 lg:pt-10">
-            {b.images.map((im, j) => (
+          <div class="flex flex-col gap-6 pt-9 md:flex-row md:gap-4 md:pt-10.5 lg:pt-10.5">
+            {(i === pairIdx ? b.images.slice(0, 1) : b.images).map((im, j) => (
               <div class="bg-media relative aspect-[4/5] overflow-clip rounded-hero-sm md:flex-1 md:rounded-card">
                 <Img src={im.src} alt={im.alt} widths={[480, 720, 960, 1200]} sizes={pairSizes} loading={j === 0 ? loading : "lazy"} fetchpriority={j === 0 ? fetchpriority : undefined} />
               </div>
             ))}
+            {i === pairIdx && sideText && sideText.type === "text" && (
+              <div class="hidden md:flex md:flex-1 md:flex-col md:[justify-content:start] md:pt-25 md:pb-0 md:gap-3 md:pl-6 lg:pt-32.5 lg:pr-20 lg:pl-12">
+                <h2 class="text-h4">{sideText.title}</h2>
+                <div class="text-body-lg text-ink-2 flex flex-col gap-4 [&_a]:underline" set:html={marked.parse(sideText.body.trim()) as string} />
+              </div>
+            )}
           </div>
         );
       }
@@ -82,12 +95,12 @@ const firstImage = d.blocks.findIndex((b) => b.type !== "text");
       );
     })}
 
-    <section class="flex flex-col gap-8 pt-19 pb-13 md:gap-7 md:pt-25 md:pb-19 lg:pt-35">
+    <section class="flex flex-col gap-8 pt-19 pb-13 md:gap-7 md:pt-22.5 md:pb-19 lg:pt-25">
       <div class="flex flex-col items-center gap-8 md:flex-row md:items-end md:justify-between">
         <h2 class="text-h3">{t.moreTitle}</h2>
-        <a href="/#contenido" class="bg-ink text-ink-inverse shadow-btn inline-flex h-8.5 items-center gap-2 rounded-btn-sm px-3 text-ui-sm font-medium transition duration-300 hover:brightness-125 md:h-11 md:rounded-btn md:px-4.5 md:text-ui">{t.moreButton} <svg aria-hidden="true" viewBox="0 0 16 16" class="size-3.5" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4" /></svg></a>
+        <a href="/#contenido" class="bg-ink text-ink-inverse shadow-btn inline-flex h-8.5 items-center gap-2 rounded-btn-sm px-3 text-ui-sm font-medium transition duration-300 hover:-translate-y-0.5 hover:brightness-125 active:translate-y-0 active:scale-[0.96] active:brightness-90 md:h-11 md:rounded-btn md:px-4.5 md:text-ui">{t.moreButton} <svg aria-hidden="true" viewBox="0 0 16 16" class="size-3.5" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4" /></svg></a>
       </div>
-      <div class="grid grid-cols-1 gap-x-4 gap-y-10 md:grid-cols-2 md:gap-x-6 md:gap-y-14">
+      <div class="grid grid-cols-1 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-5 md:gap-y-14 lg:gap-x-6">
         {related.map((p) => <ProjectCard project={p} variant="related" />)}
       </div>
     </section>

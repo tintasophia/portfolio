@@ -27,7 +27,7 @@ blocks:
     value:
       title: Descripción general
       body: >
-        Una pieza en blanco y negro realizada mediante ilustración digital y
+        Pieza en blanco y negro realizada mediante ilustración digital y
         puntillismo, con detalles de sombra en rojo. La composición integra un
         colectivo clásico entre formas botánicas, flores y ornamentaciones que
         enmarcan la escena.
@@ -47,10 +47,9 @@ blocks:
       title: Detrás de la ilustración
       body: >
         A partir de una fotografía de referencia y algunas indicaciones
-        iniciales, desarrollé libremente la composición, buscando integrar el
-        vehículo y los elementos naturales en una misma pieza. El trabajo se
-        completó con la impresión de la ilustración y la intervención manual del
-        marco.
+        iniciales, se desarrolló la composición, buscando que el vehículo y los
+        elementos naturales se fusionen armónicamente. El trabajo se completó
+        con la impresión de la ilustración y la intervención del marco.
   - discriminant: image
     value:
       image:

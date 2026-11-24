@@ -1,12 +1,12 @@
 title: Universo gatuno
 category: Personajes
-year: 2025 - 2026
+year: 2024 - 2026
 intro: >-
-  Una colección de ilustraciones de gatos que explora diferentes estilos,
-  técnicas y formas de representación.
+  Colección de ilustraciones de gatos que explora diferentes estilos, técnicas y
+  formas.
 description: >-
-  Una colección de ilustraciones de gatos que explora diferentes estilos,
-  técnicas y formas de representación.
+  Colección de ilustraciones de gatos que explora diferentes estilos, técnicas y
+  formas de representación.
 services:
   - Ilustración digital
   - Ilustración editorial
@@ -17,21 +17,14 @@ cover:
     Carta de tarot «The Skater»: un gato celeste asomado de un patín en línea
     entre nubes y estrellas
 blocks:
-  - discriminant: hero
-    value:
-      image:
-        src: ../../assets/img/universo-gatuno/hero.png
-        alt: >-
-          Gato celeste dentro de un patín en línea, entre nubes turquesas sobre
-          un cielo azul noche
   - discriminant: text
     value:
       title: Descripción general
       body: >
         Una selección de ilustraciones de distintos personajes felinos,
         realizadas tanto en formato digital como tradicional. Cada uno tiene sus
-        propias formas, expresiones y particularidades, con propuestas que van
-        desde lo cute y caricaturesco hasta lo más oscuro.
+        propias particularidades, con propuestas que van desde lo cute y
+        caricaturesco hasta algo más trash.
   - discriminant: images
     value:
       images:
@@ -51,10 +44,14 @@ blocks:
         mismo tema. A través de distintas técnicas y estilos, busqué jugar con
         las formas, exagerar ciertos rasgos y darles personalidad propia a cada
         uno de los gatos.
-  - discriminant: image
+  - discriminant: images
     value:
-      image:
-        src: ../../assets/img/universo-gatuno/cierre.jpg
-        alt: >-
-          Cuaderno abierto con garabatos de gatos, un hámster punk, calaveras y
-          manos con el gesto del rock, rodeado de fineliners
+      images:
+        - src: ../../assets/img/universo-gatuno/fullsizerender-nlwk.jpeg
+          alt: >-
+            Cuaderno abierto con garabatos de gatos, un hámster punk, calaveras
+            y manos con el gesto del rock, rodeado de fineliners
+        - src: ../../assets/img/universo-gatuno/img-0601-6yra.png
+          alt: >-
+            Ilustración de gato acostado con la barriga para arriba. Blanco y
+            negro sobre fondo blanco
