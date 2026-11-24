@@ -3,26 +3,17 @@
    propiedades NO deben llevar utilidades de Tailwind para la misma propiedad (ganarían). */
 
 @layer components {
-  /* ── Tabs ───────────────────────────────────────────────────────────────────
-     Ids fijos de las pestañas: 1 (trabajos), 2 (sobre mí), 3 (a pedido). Ver Tabs.astro.
-     Estado = :target. Sin target (o target ajeno) => Works. */
-  .tabs [data-panel] { display: none; }
-  .tabs:not(:has([id="2"]:target, [id="3"]:target)) [data-panel="1"],
-  .tabs:has([id="2"]:target) [data-panel="2"],
-  .tabs:has([id="3"]:target) [data-panel="3"] { display: block; }
-
+  /* ── Pestañas ─────────────────────────────────────────────────────────────
+     Cada pestaña es una página; la activa lleva aria-current="page" (ver Tabs.astro). */
   .tab-link { color: var(--color-ink-2); }
-  .tabs:not(:has([id="2"]:target, [id="3"]:target)) .tab-link[data-tab="1"],
-  .tabs:has([id="2"]:target) .tab-link[data-tab="2"],
-  .tabs:has([id="3"]:target) .tab-link[data-tab="3"] { color: var(--color-ink); }
+  .tab-link[aria-current="page"],
   .tab-link:hover { color: var(--color-ink); }
 
-  /* Pill deslizante: CSS anchor positioning. Sin soporte, la tab activa lleva su propio fondo. */
+  /* Pill bajo la pestaña activa: CSS anchor positioning. Al navegar entre pestañas se desliza
+     sola (view transition, global.css). Sin soporte, la pestaña activa lleva su propio fondo. */
   .tab-pill { display: none; }
   @supports (anchor-name: --a) {
-    .tab-link[data-tab="1"] { anchor-name: --tab-1; }
-    .tab-link[data-tab="2"] { anchor-name: --tab-2; }
-    .tab-link[data-tab="3"] { anchor-name: --tab-3; }
+    .tab-link[aria-current="page"] { anchor-name: --tab-active; }
     .tab-pill {
       display: block;
       position: absolute;
@@ -32,23 +23,19 @@
       border-radius: var(--radius-pill);
       background: var(--color-card);
       box-shadow: var(--shadow-pill);
-      left: anchor(--tab-1 left);
-      right: anchor(--tab-1 right);
-      transition: left 0.55s var(--ease-soft), right 0.55s var(--ease-soft);
+      left: anchor(--tab-active left);
+      right: anchor(--tab-active right);
+      view-transition-name: tab-pill;
     }
-    .tabs:has([id="2"]:target) .tab-pill { left: anchor(--tab-2 left); right: anchor(--tab-2 right); }
-    .tabs:has([id="3"]:target) .tab-pill { left: anchor(--tab-3 left); right: anchor(--tab-3 right); }
   }
   @supports not (anchor-name: --a) {
-    .tabs:not(:has([id="2"]:target, [id="3"]:target)) .tab-link[data-tab="1"],
-    .tabs:has([id="2"]:target) .tab-link[data-tab="2"],
-    .tabs:has([id="3"]:target) .tab-link[data-tab="3"] {
+    .tab-link[aria-current="page"] {
       background: var(--color-card);
       box-shadow: var(--shadow-pill);
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    .tab-pill, .tab-link { transition: none; }
+    .tab-link { transition: none; }
   }
 
   /* "*" decorativo de A pedido (no es contenido) */
@@ -85,7 +72,7 @@
     width: 8px;
     height: 8px;
     border-radius: var(--radius-pill);
-    background-color: rgb(255 255 255 / 0.7);
+    background-color: var(--color-dot);
     cursor: pointer;
     transition: width 0.5s var(--ease-soft);
   }
@@ -260,11 +247,11 @@
     100% { opacity: 0; z-index: 0; transform: scale(1.04); }
   }
   @keyframes dot-2 {
-    0% { width: 8px; background-color: rgb(255 255 255 / 0.7); }
-    6% { width: 22px; background-color: #fff; }
-    50% { width: 22px; background-color: #fff; }
-    56% { width: 8px; background-color: rgb(255 255 255 / 0.7); }
-    100% { width: 8px; background-color: rgb(255 255 255 / 0.7); }
+    0% { width: 8px; background-color: var(--color-dot); }
+    6% { width: 22px; background-color: var(--color-dot-active); }
+    50% { width: 22px; background-color: var(--color-dot-active); }
+    56% { width: 8px; background-color: var(--color-dot); }
+    100% { width: 8px; background-color: var(--color-dot); }
   }
   @keyframes slide-3 {
     0% { opacity: 0; z-index: 2; transform: scale(1.04); }
@@ -277,11 +264,11 @@
     100% { opacity: 0; z-index: 0; transform: scale(1.04); }
   }
   @keyframes dot-3 {
-    0% { width: 8px; background-color: rgb(255 255 255 / 0.7); }
-    4% { width: 22px; background-color: #fff; }
-    33.333% { width: 22px; background-color: #fff; }
-    37.333% { width: 8px; background-color: rgb(255 255 255 / 0.7); }
-    100% { width: 8px; background-color: rgb(255 255 255 / 0.7); }
+    0% { width: 8px; background-color: var(--color-dot); }
+    4% { width: 22px; background-color: var(--color-dot-active); }
+    33.333% { width: 22px; background-color: var(--color-dot-active); }
+    37.333% { width: 8px; background-color: var(--color-dot); }
+    100% { width: 8px; background-color: var(--color-dot); }
   }
   @keyframes slide-4 {
     0% { opacity: 0; z-index: 2; transform: scale(1.04); }
@@ -294,11 +281,11 @@
     100% { opacity: 0; z-index: 0; transform: scale(1.04); }
   }
   @keyframes dot-4 {
-    0% { width: 8px; background-color: rgb(255 255 255 / 0.7); }
-    3% { width: 22px; background-color: #fff; }
-    25% { width: 22px; background-color: #fff; }
-    28% { width: 8px; background-color: rgb(255 255 255 / 0.7); }
-    100% { width: 8px; background-color: rgb(255 255 255 / 0.7); }
+    0% { width: 8px; background-color: var(--color-dot); }
+    3% { width: 22px; background-color: var(--color-dot-active); }
+    25% { width: 22px; background-color: var(--color-dot-active); }
+    28% { width: 8px; background-color: var(--color-dot); }
+    100% { width: 8px; background-color: var(--color-dot); }
   }
   @keyframes slide-5 {
     0% { opacity: 0; z-index: 2; transform: scale(1.04); }
@@ -311,11 +298,11 @@
     100% { opacity: 0; z-index: 0; transform: scale(1.04); }
   }
   @keyframes dot-5 {
-    0% { width: 8px; background-color: rgb(255 255 255 / 0.7); }
-    2.4% { width: 22px; background-color: #fff; }
-    20% { width: 22px; background-color: #fff; }
-    22.4% { width: 8px; background-color: rgb(255 255 255 / 0.7); }
-    100% { width: 8px; background-color: rgb(255 255 255 / 0.7); }
+    0% { width: 8px; background-color: var(--color-dot); }
+    2.4% { width: 22px; background-color: var(--color-dot-active); }
+    20% { width: 22px; background-color: var(--color-dot-active); }
+    22.4% { width: 8px; background-color: var(--color-dot); }
+    100% { width: 8px; background-color: var(--color-dot); }
   }
   @keyframes slide-6 {
     0% { opacity: 0; z-index: 2; transform: scale(1.04); }
@@ -328,11 +315,11 @@
     100% { opacity: 0; z-index: 0; transform: scale(1.04); }
   }
   @keyframes dot-6 {
-    0% { width: 8px; background-color: rgb(255 255 255 / 0.7); }
-    2% { width: 22px; background-color: #fff; }
-    16.667% { width: 22px; background-color: #fff; }
-    18.667% { width: 8px; background-color: rgb(255 255 255 / 0.7); }
-    100% { width: 8px; background-color: rgb(255 255 255 / 0.7); }
+    0% { width: 8px; background-color: var(--color-dot); }
+    2% { width: 22px; background-color: var(--color-dot-active); }
+    16.667% { width: 22px; background-color: var(--color-dot-active); }
+    18.667% { width: 8px; background-color: var(--color-dot); }
+    100% { width: 8px; background-color: var(--color-dot); }
   }
   @keyframes slide-7 {
     0% { opacity: 0; z-index: 2; transform: scale(1.04); }
@@ -345,11 +332,11 @@
     100% { opacity: 0; z-index: 0; transform: scale(1.04); }
   }
   @keyframes dot-7 {
-    0% { width: 8px; background-color: rgb(255 255 255 / 0.7); }
-    1.714% { width: 22px; background-color: #fff; }
-    14.286% { width: 22px; background-color: #fff; }
-    16% { width: 8px; background-color: rgb(255 255 255 / 0.7); }
-    100% { width: 8px; background-color: rgb(255 255 255 / 0.7); }
+    0% { width: 8px; background-color: var(--color-dot); }
+    1.714% { width: 22px; background-color: var(--color-dot-active); }
+    14.286% { width: 22px; background-color: var(--color-dot-active); }
+    16% { width: 8px; background-color: var(--color-dot); }
+    100% { width: 8px; background-color: var(--color-dot); }
   }
   @keyframes slide-8 {
     0% { opacity: 0; z-index: 2; transform: scale(1.04); }
@@ -362,51 +349,51 @@
     100% { opacity: 0; z-index: 0; transform: scale(1.04); }
   }
   @keyframes dot-8 {
-    0% { width: 8px; background-color: rgb(255 255 255 / 0.7); }
-    1.5% { width: 22px; background-color: #fff; }
-    12.5% { width: 22px; background-color: #fff; }
-    14% { width: 8px; background-color: rgb(255 255 255 / 0.7); }
-    100% { width: 8px; background-color: rgb(255 255 255 / 0.7); }
+    0% { width: 8px; background-color: var(--color-dot); }
+    1.5% { width: 22px; background-color: var(--color-dot-active); }
+    12.5% { width: 22px; background-color: var(--color-dot-active); }
+    14% { width: 8px; background-color: var(--color-dot); }
+    100% { width: 8px; background-color: var(--color-dot); }
   }
 
   /* Elección manual: sin animaciones, se ve la foto elegida. */
   .carousel:has(input:nth-of-type(1):checked) .slides > .slide:nth-child(1),
   .carousel:has(input:nth-of-type(1):checked) .caps > .cap:nth-child(1) { opacity: 1; transform: none; z-index: 1; }
-  .carousel:has(input:nth-of-type(1):checked) .dots > .dot:nth-child(1) { width: 22px; background-color: #fff; }
+  .carousel:has(input:nth-of-type(1):checked) .dots > .dot:nth-child(1) { width: 22px; background-color: var(--color-dot-active); }
   .carousel:has(input:nth-of-type(1):focus-visible) .dots > .dot:nth-child(1) { outline: 2px solid var(--color-violet); outline-offset: 3px; }
   .carousel:has(input:nth-of-type(2):checked) .slides > .slide:nth-child(2),
   .carousel:has(input:nth-of-type(2):checked) .caps > .cap:nth-child(2) { opacity: 1; transform: none; z-index: 1; }
-  .carousel:has(input:nth-of-type(2):checked) .dots > .dot:nth-child(2) { width: 22px; background-color: #fff; }
+  .carousel:has(input:nth-of-type(2):checked) .dots > .dot:nth-child(2) { width: 22px; background-color: var(--color-dot-active); }
   .carousel:has(input:nth-of-type(2):focus-visible) .dots > .dot:nth-child(2) { outline: 2px solid var(--color-violet); outline-offset: 3px; }
   .carousel:has(input:nth-of-type(3):checked) .slides > .slide:nth-child(3),
   .carousel:has(input:nth-of-type(3):checked) .caps > .cap:nth-child(3) { opacity: 1; transform: none; z-index: 1; }
-  .carousel:has(input:nth-of-type(3):checked) .dots > .dot:nth-child(3) { width: 22px; background-color: #fff; }
+  .carousel:has(input:nth-of-type(3):checked) .dots > .dot:nth-child(3) { width: 22px; background-color: var(--color-dot-active); }
   .carousel:has(input:nth-of-type(3):focus-visible) .dots > .dot:nth-child(3) { outline: 2px solid var(--color-violet); outline-offset: 3px; }
   .carousel:has(input:nth-of-type(4):checked) .slides > .slide:nth-child(4),
   .carousel:has(input:nth-of-type(4):checked) .caps > .cap:nth-child(4) { opacity: 1; transform: none; z-index: 1; }
-  .carousel:has(input:nth-of-type(4):checked) .dots > .dot:nth-child(4) { width: 22px; background-color: #fff; }
+  .carousel:has(input:nth-of-type(4):checked) .dots > .dot:nth-child(4) { width: 22px; background-color: var(--color-dot-active); }
   .carousel:has(input:nth-of-type(4):focus-visible) .dots > .dot:nth-child(4) { outline: 2px solid var(--color-violet); outline-offset: 3px; }
   .carousel:has(input:nth-of-type(5):checked) .slides > .slide:nth-child(5),
   .carousel:has(input:nth-of-type(5):checked) .caps > .cap:nth-child(5) { opacity: 1; transform: none; z-index: 1; }
-  .carousel:has(input:nth-of-type(5):checked) .dots > .dot:nth-child(5) { width: 22px; background-color: #fff; }
+  .carousel:has(input:nth-of-type(5):checked) .dots > .dot:nth-child(5) { width: 22px; background-color: var(--color-dot-active); }
   .carousel:has(input:nth-of-type(5):focus-visible) .dots > .dot:nth-child(5) { outline: 2px solid var(--color-violet); outline-offset: 3px; }
   .carousel:has(input:nth-of-type(6):checked) .slides > .slide:nth-child(6),
   .carousel:has(input:nth-of-type(6):checked) .caps > .cap:nth-child(6) { opacity: 1; transform: none; z-index: 1; }
-  .carousel:has(input:nth-of-type(6):checked) .dots > .dot:nth-child(6) { width: 22px; background-color: #fff; }
+  .carousel:has(input:nth-of-type(6):checked) .dots > .dot:nth-child(6) { width: 22px; background-color: var(--color-dot-active); }
   .carousel:has(input:nth-of-type(6):focus-visible) .dots > .dot:nth-child(6) { outline: 2px solid var(--color-violet); outline-offset: 3px; }
   .carousel:has(input:nth-of-type(7):checked) .slides > .slide:nth-child(7),
   .carousel:has(input:nth-of-type(7):checked) .caps > .cap:nth-child(7) { opacity: 1; transform: none; z-index: 1; }
-  .carousel:has(input:nth-of-type(7):checked) .dots > .dot:nth-child(7) { width: 22px; background-color: #fff; }
+  .carousel:has(input:nth-of-type(7):checked) .dots > .dot:nth-child(7) { width: 22px; background-color: var(--color-dot-active); }
   .carousel:has(input:nth-of-type(7):focus-visible) .dots > .dot:nth-child(7) { outline: 2px solid var(--color-violet); outline-offset: 3px; }
   .carousel:has(input:nth-of-type(8):checked) .slides > .slide:nth-child(8),
   .carousel:has(input:nth-of-type(8):checked) .caps > .cap:nth-child(8) { opacity: 1; transform: none; z-index: 1; }
-  .carousel:has(input:nth-of-type(8):checked) .dots > .dot:nth-child(8) { width: 22px; background-color: #fff; }
+  .carousel:has(input:nth-of-type(8):checked) .dots > .dot:nth-child(8) { width: 22px; background-color: var(--color-dot-active); }
   .carousel:has(input:nth-of-type(8):focus-visible) .dots > .dot:nth-child(8) { outline: 2px solid var(--color-violet); outline-offset: 3px; }
 
   @media (prefers-reduced-motion: reduce) {
     .carousel :is(.slide, .cap, .dot) { animation: none !important; transition: none; }
     .carousel:not(:has(input:checked)) .slides > .slide:first-child,
     .carousel:not(:has(input:checked)) .caps > .cap:first-child { opacity: 1; transform: none; }
-    .carousel:not(:has(input:checked)) .dots > .dot:first-child { width: 22px; background-color: #fff; }
+    .carousel:not(:has(input:checked)) .dots > .dot:first-child { width: 22px; background-color: var(--color-dot-active); }
   }
 }

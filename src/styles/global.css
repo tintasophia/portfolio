@@ -27,9 +27,11 @@
 /* Tokens del sitio (solo tema claro), extraídos de los --token-* de Framer.
    Mapeo completo en .scratch/spec/tokens.json. */
 @theme {
-  /* Breakpoints (como el original: base < 810, md >= 810, lg >= 1200) */
+  /* Breakpoints: base < 810 (celular), md >= 810 (tablet), lg >= 1024 (escritorio).
+     El original de Framer tenía escritorio desde 1200, pero así una ventana de laptop (1024–1199)
+     caía en el diseño de tablet; el de escritorio se ve igual desde 1200 y crece si hace falta. */
   --breakpoint-md: 810px;
-  --breakpoint-lg: 1200px;
+  --breakpoint-lg: 1024px;
 
   /* Colores */
   --color-bg: #f7f6f4; /* fondo de página */
@@ -48,6 +50,8 @@
   --color-accent: #ff5b2e; /* naranja */
   --color-accent-2: #ca95ed; /* violeta claro: fondo del footer y stats */
   --color-violet: #9f5fc9; /* violeta del "&" */
+  --color-dot: rgb(255 255 255 / 0.7); /* puntito del carrusel */
+  --color-dot-active: #fff; /* puntito del carrusel, foto actual */
 
   /* Tipografía */
   --font-sans: "Geist Variable", "Geist Fallback", system-ui, sans-serif;
@@ -150,6 +154,12 @@
   --text-micro--line-height: 1.5;
   --text-micro--font-weight: 400;
 
+  /* Texto de controles (botón del header, tabs, links del footer): solo tamaño,
+     el interlineado lo pone cada uno con leading-*. */
+  --text-ui-sm: 13px;
+  --text-ui: 14px;
+  --text-ui-lg: 15px;
+
   /* Radios */
   --radius-pill: 999px; /* badges, tabs, barra de tabs */
   --radius-card: 24px; /* imagen de card de proyecto */
@@ -159,6 +169,7 @@
   --radius-btn: 14px; /* botón "Conocer más" */
   --radius-btn-md: 12px; /* theme toggle / CTA, md+ */
   --radius-btn-sm: 10px; /* CTA base */
+  --radius-tile-sm: 9px; /* tarjeta "*" de A pedido, base */
 
   /* Sombras */
   --shadow-cover: 0 30px 60px -24px rgb(16 17 20 / 0.45), 0 0 0 1px rgb(255 255 255 / 0.4); /* cover shot de card */
@@ -199,8 +210,24 @@
 @import "./components/site.css";  /* layout, header, footer, cards, página de proyecto */
 @import "./components/home.css";  /* tabs, carrusel, paneles de la home */
 
-/* Las anclas de tabs (#sobre-mi…) llegan con scroll suave, como el original. */
+/* Navegación entre páginas animada con view transitions entre documentos: solo CSS, sin JS.
+   Lo que se repite queda quieto (header, hero, barra de pestañas); la pill se desliza a la
+   pestaña nueva y el resto hace un fundido corto (el panel nuevo entra con su animate-panel-in).
+   Navegadores sin soporte: navegación normal. */
+@view-transition { navigation: auto; }
 @layer base {
-  html { scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  .site-header { view-transition-name: site-header; }
+  .home-hero { view-transition-name: home-hero; }
+  .tabbar { view-transition-name: tabbar; }
+  ::view-transition-old(root),
+  ::view-transition-new(root) { animation-duration: 0.25s; }
+  ::view-transition-group(tab-pill) { animation-duration: 0.45s; animation-timing-function: var(--ease-soft); }
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) { animation: none !important; }
+  }
 }
+
+/* Sin scroll suave: las pestañas son páginas y llegan al ancla #contenido. Con scroll-behavior:
+   smooth la página nueva se pintaba arriba y después bajaba hasta el ancla. */

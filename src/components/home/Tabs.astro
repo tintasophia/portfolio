@@ -1,19 +1,22 @@
 ---
-/* Tabs sin JS. Patrón: el estado vive SOLO en :target.
-   - Cada tab es un <a href="#id"> y el <span id> ancla (alto 0) está justo sobre la barra,
-     así el salto de scroll deja la barra pegada arriba (scroll-mt = top del sticky).
-   - Sin target (o target ajeno a las tabs) se muestra la primera pestaña.
-   - Los ids son fijos (1, 2, 3) y están escritos en src/styles/components/home.css
-     (reglas :has/:target, anchor-name de la pill). Los nombres visibles salen de hero.yaml.
-   - Los paneles (slot) son elementos con data-panel="<id>". */
+/* Barra de pestañas de la home. Cada pestaña es un link a su página; la activa lleva
+   aria-current="page" (de ahí salen el color y la pill, ver home.css).
+   - Los links llegan al ancla #contenido (justo sobre la barra, scroll-mt = top del sticky): la
+     página nueva se abre con la barra arriba y su contenido a la vista, no desde el principio.
+   - La barra, la pill y cada pestaña tienen view-transition-name: al navegar, la pill se desliza
+     a la nueva pestaña por debajo de los textos (cada link es su propia capa, pintada después
+     de la pill) y la barra no se mueve (global.css). */
+import { CONTENT_ANCHOR, tabHref, type Tab, type TabKey } from "../../lib/tabs";
+
 interface Props {
-  tabs: { id: "1" | "2" | "3"; label: string }[];
+  tabs: Tab[];
+  active: TabKey;
 }
-const { tabs } = Astro.props;
+const { tabs, active } = Astro.props;
 ---
 
 <div class="tabs">
-  {tabs.map((t) => <span id={t.id} class="block h-0 scroll-mt-4" aria-hidden="true" />)}
+  <span id={CONTENT_ANCHOR} class="block h-0 scroll-mt-4" aria-hidden="true"></span>
   <div class="sticky top-4 z-10 flex h-[50px] justify-center">
     <nav
       aria-label="Secciones"
@@ -23,9 +26,10 @@ const { tabs } = Astro.props;
       {
         tabs.map((t) => (
           <a
-            href={`#${t.id}`}
-            data-tab={t.id}
-            class="tab-link relative z-[1] whitespace-nowrap rounded-pill px-2.5 py-[7px] text-[13px] leading-[1.2] font-medium transition-colors duration-[350ms] ease-soft outline-offset-2 focus-visible:outline-2 focus-visible:outline-violet md:px-4 md:py-2 md:text-[15px]"
+            href={tabHref(t)}
+            aria-current={t.key === active ? "page" : undefined}
+            style={`view-transition-name: tab-${t.key}`}
+            class="tab-link relative z-[1] whitespace-nowrap rounded-pill px-2.5 py-[7px] text-ui-sm leading-[1.2] font-medium transition-colors duration-[350ms] ease-soft outline-offset-2 focus-visible:outline-2 focus-visible:outline-violet md:px-4 md:py-2 md:text-ui-lg"
           >
             {t.label}
           </a>

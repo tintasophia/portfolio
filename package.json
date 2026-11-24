@@ -12,7 +12,8 @@
     "preview": "astro preview",
     "check": "astro check",
     "astro": "astro",
-    "editor": "astro dev --open /keystatic/"
+    "editor": "astro dev --open /keystatic/",
+    "editor:visual": "LF_SITE_SRC=\"$PWD\" LF_SITE_NAME=sophi-web pnpm --dir \"${LF_EDITOR_DIR:-$HOME/orca/workspaces/landing-factory/editor-sophi-poc/experiments/editor-proto}\" dev"
   },
   "dependencies": {
     "@astrojs/react": "^7.1.9",
