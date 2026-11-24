@@ -1,0 +1,12 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import Home from "../components/home/Home.astro";
+import site from "../data/site.json";
+
+// og:image de la home: la portada del primer proyecto.
+const [first] = (await getCollection("proyectos")).sort((a, b) => a.data.order - b.data.order);
+---
+<Base title={site.title} description={site.description} image={first?.data.cover.src}>
+  <Home />
+</Base>

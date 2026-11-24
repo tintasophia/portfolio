@@ -1,0 +1,23 @@
+---
+// Hero de la home: h1 "Ilustraciones & arte visual" + tagline. Textos desde src/content/home/hero.md.
+interface Props {
+  title: { start: string; accent: string; end: string };
+  tagline: string;
+}
+const { title, tagline } = Astro.props;
+---
+
+<section class="mx-auto flex w-full max-w-[1232px] flex-col items-center px-5 pt-8 md:px-6 md:pt-12">
+  <h1
+    class="mt-9 flex w-[72%] flex-wrap items-end justify-center gap-x-2.5 text-ink md:w-[64%] md:gap-x-[22px] lg:w-full"
+  >
+    <span class="whitespace-pre text-display-sm md:text-display">{title.start}</span>
+    <span class="whitespace-pre font-serif italic text-violet text-display-serif-sm md:text-display-serif"
+      >{title.accent}</span
+    >
+    <span class="whitespace-pre text-display-sm md:text-display">{title.end}</span>
+  </h1>
+  <div class="flex w-full flex-col items-center pt-3 pb-[33px]">
+    <p class="w-full max-w-[560px] text-balance text-center text-tagline text-ink-2">{tagline}</p>
+  </div>
+</section>

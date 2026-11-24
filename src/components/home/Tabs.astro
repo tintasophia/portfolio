@@ -1,0 +1,40 @@
+---
+/* Tabs sin JS. Patrón: el estado vive SOLO en :target.
+   - Cada tab es un <a href="#id"> y el <span id> ancla (alto 0) está justo sobre la barra,
+     así el salto de scroll deja la barra pegada arriba (scroll-mt = top del sticky).
+   - Sin target (o target ajeno a las tabs) se muestra la primera tab (Works).
+   - Los ids (works, sobre-mi, a-pedido) vienen de hero.md y están ESCRITOS en
+     src/styles/components/home.css (reglas :has/:target, anchor-name de la pill).
+     Si cambian los ids hay que actualizar ese CSS.
+   - Los paneles (slot) son elementos con data-panel="<id>". */
+interface Props {
+  tabs: { id: string; label: string }[];
+}
+const { tabs } = Astro.props;
+---
+
+<div class="tabs">
+  {tabs.map((t) => <span id={t.id} class="block h-0 scroll-mt-4" aria-hidden="true" />)}
+  <div class="sticky top-4 z-10 flex h-[50px] justify-center">
+    <nav
+      aria-label="Secciones"
+      class="tabbar relative inline-flex mt-1 h-fit items-center rounded-pill bg-glass p-[5px] shadow-tabbar backdrop-blur-[16px] backdrop-saturate-[1.6]"
+    >
+      <span class="tab-pill" aria-hidden="true"></span>
+      {
+        tabs.map((t) => (
+          <a
+            href={`#${t.id}`}
+            data-tab={t.id}
+            class="tab-link relative z-[1] whitespace-nowrap rounded-pill px-2.5 py-[7px] text-[13px] leading-[1.2] font-medium transition-colors duration-[350ms] ease-soft outline-offset-2 focus-visible:outline-2 focus-visible:outline-violet md:px-4 md:py-2 md:text-[15px]"
+          >
+            {t.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+  <div class="mx-auto w-full max-w-[1232px] px-5 pt-8 md:px-6 md:pt-12">
+    <slot />
+  </div>
+</div>

@@ -1,0 +1,64 @@
+---
+/* Carrusel sin JS. Fotos superpuestas con crossfade por @keyframes (home.css) y puntitos
+   radio+label. data-n selecciona los keyframes para n fotos (1..8, ver home.css);
+   data-interval = segundos por foto (1 decimal), data-n = cantidad; home.css los traduce a --t, --n e --i (nth-child), sin style="" inline. Al elegir un puntito
+   (:has(input:checked)) se corta el autoplay. */
+import { Picture } from "astro:assets";
+import type { ImageMetadata } from "astro";
+interface Props {
+  photos: { src: ImageMetadata; alt: string; caption?: string }[];
+  interval: number;
+}
+const { photos, interval } = Astro.props;
+const n = photos.length;
+if (n > 8) throw new Error("Carousel: home.css solo trae keyframes para hasta 8 fotos");
+// El intervalo se expresa como data-interval="4.2" (1 decimal); home.css trae reglas para 1.0..12.0 s.
+const intervalKey = interval.toFixed(1);
+if (interval < 1 || interval > 12) throw new Error("Carousel: interval debe estar entre 1 y 12 segundos");
+const hasCaptions = photos.some((p) => p.caption);
+---
+
+<figure class="carousel m-0 w-full lg:w-[480px] lg:shrink-0" data-n={n} data-interval={intervalKey}>
+  {n > 1 && photos.map((_, i) => <input type="radio" name="photo" id={`photo-${i + 1}`} class="sr-only" />)}
+  <div class="relative h-[398px] w-full overflow-hidden rounded-card bg-media md:h-[560px] lg:h-[665px]">
+    <div class="slides absolute inset-0">
+      {
+        photos.map((p, i) => (
+          <div class="slide absolute inset-0">
+            <Picture
+              src={p.src}
+              alt={p.alt}
+              formats={["avif", "webp"]}
+              fallbackFormat="webp"
+              widths={[480, 720, 960]}
+              sizes="(min-width: 1200px) 480px, (min-width: 810px) 353px, 100vw"
+              loading={i === 0 ? "eager" : "lazy"}
+              fetchpriority={i === 0 ? "high" : undefined}
+              class="size-full object-cover"
+            />
+          </div>
+        ))
+      }
+    </div>
+    {
+      n > 1 && (
+        <div class="dots absolute z-10 bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-1.5 rounded-pill bg-white/40 px-2 py-1.5 backdrop-blur-md">
+          {photos.map((p, i) => (
+            <label for={`photo-${i + 1}`} class="dot" aria-label={p.alt} />
+          ))}
+        </div>
+      )
+    }
+  </div>
+  {
+    hasCaptions && (
+      <figcaption class="caps mt-3 grid text-caption text-ink-2">
+        {photos.map((p) => (
+          <span class="cap [grid-area:1/1]">
+            {p.caption}
+          </span>
+        ))}
+      </figcaption>
+    )
+  }
+</figure>

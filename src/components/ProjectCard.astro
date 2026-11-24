@@ -1,0 +1,37 @@
+---
+// Card de proyecto (home y "Proyectos recientes").
+import type { CollectionEntry } from "astro:content";
+import { Picture } from "astro:assets";
+interface Props { project: CollectionEntry<"proyectos">; variant?: "home" | "related"; priority?: boolean }
+const { project, variant = "home", priority = false } = Astro.props;
+const { title, category, year, cover } = project.data;
+const related = variant === "related";
+---
+<a href={`/proyectos/${project.id}/`} class="group flex flex-col gap-3.5">
+  <div class="bg-media relative aspect-[4/3] overflow-clip rounded-card isolate">
+    <div
+      aria-hidden="true"
+      class="card-glow pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100 motion-reduce:transition-none"
+    ></div>
+    <div class:list={["shadow-cover absolute inset-x-0 overflow-clip transition-transform duration-900 ease-soft group-hover:-translate-y-2 group-hover:scale-[1.015] motion-reduce:transition-none motion-reduce:group-hover:transform-none", related ? "-top-6 -bottom-[26px]" : "top-0 -bottom-[27px] md:-bottom-6 lg:-bottom-[62px]"]}>
+      <Picture
+        pictureAttributes={{ class: "block size-full" }}
+        src={cover.src}
+        alt={cover.alt}
+        formats={["avif", "webp"]}
+        fallbackFormat="webp"
+        widths={[480, 720, 960, 1200]}
+        sizes="(min-width: 1232px) 580px, (min-width: 810px) 46vw, 100vw"
+        loading={priority ? "eager" : "lazy"}
+        fetchpriority={priority ? "high" : undefined}
+        decoding="async"
+        class="size-full object-cover transition-transform duration-[1400ms] ease-soft group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:transform-none"
+      />
+    </div>
+    <span class:list={["bg-glass-badge absolute rounded-pill px-2.5 py-1.25 text-ink backdrop-blur-sm", related ? "text-badge top-3.5 left-3.5" : "text-caption top-4 left-4 md:top-5 md:left-5"]}>{category}</span>
+  </div>
+  <div class="flex items-center justify-between gap-4">
+    <h3 class="text-label">{title}</h3>
+    {related && <span class="text-body text-ink-2">{year}</span>}
+  </div>
+</a>

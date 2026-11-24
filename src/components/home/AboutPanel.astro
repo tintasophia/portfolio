@@ -1,0 +1,31 @@
+---
+import { render, type CollectionEntry } from "astro:content";
+import Carousel from "./Carousel.astro";
+interface Props {
+  entry: CollectionEntry<"home">;
+}
+const { entry } = Astro.props;
+if (entry.data.section !== "sobre-mi") throw new Error("AboutPanel espera la entrada sobre-mi");
+const { greeting, lead, photos, interval } = entry.data;
+const { Content } = await render(entry);
+---
+
+<section
+  data-panel="sobre-mi"
+  class="animate-panel-in motion-reduce:animate-none"
+>
+  <div
+    class="flex flex-col gap-8 pb-[22px] md:grid md:w-[762px] md:max-w-full md:grid-cols-2 md:gap-14 md:pt-11 lg:flex lg:w-[96%] lg:flex-row lg:gap-12"
+  >
+    <div class="md:self-start"><Carousel photos={photos} interval={interval} /></div>
+    <div class="flex min-w-0 flex-col gap-[18px] md:self-start lg:flex-1">
+      <div class="pb-2.5">
+        <h2 class="text-h2">{greeting}</h2>
+        <p class="text-lead-xl text-ink-2">{lead}</p>
+      </div>
+      <div class="flex max-w-[600px] flex-col gap-[18px] text-body-lg text-ink-2">
+        <Content />
+      </div>
+    </div>
+  </div>
+</section>

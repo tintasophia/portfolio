@@ -1,0 +1,206 @@
+@import "tailwindcss";
+
+/* Fuentes autoalojadas vía pnpm (sin Google Fonts remoto).
+   Geist: variable, pesos usados en el original: 400 y 500.
+   Instrument Serif: solo itálica 400 (el "&" y el "*" del hero). */
+@import "@fontsource-variable/geist/wght.css";
+@import "@fontsource/instrument-serif/latin-400-italic.css";
+
+/* Fallbacks con métricas ajustadas (copiados del original) para evitar saltos de layout. */
+@font-face {
+  font-family: "Geist Fallback";
+  src: local("Arial");
+  ascent-override: 94.56%;
+  descent-override: 27.76%;
+  line-gap-override: 0%;
+  size-adjust: 106.28%;
+}
+@font-face {
+  font-family: "Instrument Serif Fallback";
+  src: local("Times New Roman");
+  ascent-override: 117.87%;
+  descent-override: 36.91%;
+  line-gap-override: 0%;
+  size-adjust: 83.99%;
+}
+
+/* Tokens del sitio (solo tema claro), extraídos de los --token-* de Framer.
+   Mapeo completo en .scratch/spec/tokens.json. */
+@theme {
+  /* Breakpoints (como el original: base < 810, md >= 810, lg >= 1200) */
+  --breakpoint-md: 810px;
+  --breakpoint-lg: 1200px;
+
+  /* Colores */
+  --color-bg: #f7f6f4; /* fondo de página */
+  --color-ink: #101114; /* texto principal, botones oscuros */
+  --color-ink-2: #5d6068; /* texto secundario */
+  --color-ink-3: #9a9ca3; /* texto terciario (etiquetas "Año", "Servicio(s)") */
+  --color-ink-inverse: #f7f6f4; /* texto sobre fondo oscuro */
+  --color-card: #fff; /* tarjetas, pill de la tab activa */
+  --color-card-warm: #fffdfc; /* tarjetas "stat" de A pedido (valor literal, sin token) */
+  --color-white: #fff;
+  --color-soft: #eeedea; /* chip de categoría en la cabecera de proyecto */
+  --color-media: #f0eeea; /* fondo detrás de las imágenes de las cards */
+  --color-glass: #ffffff9e; /* barra de tabs translúcida (rgba .62) */
+  --color-glass-badge: rgb(255 255 255 / 0.78); /* badge de categoría sobre imagen (literal) */
+  --color-line: #10111414; /* bordes/divisores (rgba .08) */
+  --color-accent: #ff5b2e; /* naranja */
+  --color-accent-2: #ca95ed; /* violeta claro: fondo del footer y stats */
+  --color-violet: #9f5fc9; /* violeta del "&" */
+
+  /* Tipografía */
+  --font-sans: "Geist Variable", "Geist Fallback", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", "Instrument Serif Fallback", serif;
+
+  /* Escala tipográfica. Cada --text-* lleva line-height, letter-spacing y peso.
+     Variantes por breakpoint: ver .scratch/spec/tokens.json ("typeScale"). */
+  --text-display: 84px; /* hero h1, md+ (base: display-sm) */
+  --text-display--line-height: 1;
+  --text-display--letter-spacing: -0.045em;
+  --text-display--font-weight: 500;
+  --text-display-sm: 42px; /* hero h1, base */
+  --text-display-sm--line-height: 1;
+  --text-display-sm--letter-spacing: -0.045em;
+  --text-display-sm--font-weight: 500;
+
+  --text-display-serif: 92px; /* "&" del hero y "*" en lg (serif italic) */
+  --text-display-serif--line-height: 1;
+  --text-display-serif--letter-spacing: -0.01em;
+  --text-display-serif--font-weight: 400;
+  --text-display-serif-sm: 46px; /* "&" base */
+  --text-display-serif-sm--line-height: 1;
+  --text-display-serif-sm--letter-spacing: -0.01em;
+  --text-display-serif-sm--font-weight: 400;
+  --text-star: 70px; /* "*" de A pedido, base y md */
+  --text-star--line-height: 1;
+  --text-star--letter-spacing: -0.01em;
+  --text-star--font-weight: 400;
+
+  --text-h1: 72px; /* título de proyecto, md+ */
+  --text-h1--line-height: 1.02;
+  --text-h1--letter-spacing: -0.045em;
+  --text-h1--font-weight: 500;
+  --text-h1-sm: 40px; /* título de proyecto, base */
+  --text-h1-sm--line-height: 1.04;
+  --text-h1-sm--letter-spacing: -0.04em;
+  --text-h1-sm--font-weight: 500;
+
+  --text-h2: 30px; /* "Hola hola! Soy Sophi" */
+  --text-h2--line-height: 1.18;
+  --text-h2--letter-spacing: -0.025em;
+  --text-h2--font-weight: 500;
+
+  --text-h3: 28px; /* "A pedido", "Proyectos recientes" */
+  --text-h3--line-height: 1.2;
+  --text-h3--letter-spacing: -0.025em;
+  --text-h3--font-weight: 500;
+
+  --text-h4: 20px; /* "Descripción general", "Detrás de la ilustración" */
+  --text-h4--line-height: 1.25;
+  --text-h4--letter-spacing: -0.02em;
+  --text-h4--font-weight: 500;
+
+  --text-stat: 29px; /* texto grande de las stats de A pedido, lg */
+  --text-stat--line-height: 1;
+  --text-stat--letter-spacing: -0.04em;
+  --text-stat--font-weight: 500;
+  --text-stat-sm: 23px; /* base y md */
+  --text-stat-sm--line-height: 1;
+  --text-stat-sm--letter-spacing: -0.04em;
+  --text-stat-sm--font-weight: 500;
+
+  --text-lead-xl: 24px; /* frase "Ilustradora y diseñadora…" (color ink-2) */
+  --text-lead-xl--line-height: 1.18;
+  --text-lead-xl--letter-spacing: -0.025em;
+  --text-lead-xl--font-weight: 500;
+  --text-lead-lg: 21px; /* intro de proyecto, md+ */
+  --text-lead-lg--line-height: 1.5;
+  --text-lead-lg--letter-spacing: -0.01em;
+  --text-lead-lg--font-weight: 400;
+  --text-lead: 19px; /* intro de proyecto, base */
+  --text-lead--line-height: 1.5;
+  --text-lead--letter-spacing: 0em;
+  --text-lead--font-weight: 400;
+
+  --text-body-lg: 17px; /* biografía, descripción de proyecto */
+  --text-body-lg--line-height: 1.6;
+  --text-body-lg--font-weight: 400;
+  --text-body: 16px; /* footer blurb, año en cards */
+  --text-body--line-height: 1.55;
+  --text-body--font-weight: 400;
+  --text-tagline: 18px; /* subtítulo del hero (center) */
+  --text-tagline--line-height: 1.5;
+  --text-tagline--font-weight: 400;
+
+  --text-brand: 17px; /* "Sophia Oller Schmid" */
+  --text-brand--line-height: 1.2;
+  --text-brand--letter-spacing: -0.02em;
+  --text-brand--font-weight: 500;
+  --text-label: 15px; /* títulos de card, valores de meta, títulos de footer */
+  --text-label--line-height: 1.4;
+  --text-label--font-weight: 500;
+  --text-caption: 13px; /* categoría en home, "Año"/"Servicio(s)" */
+  --text-caption--line-height: 1.3; /* 1.4 en las etiquetas de meta */
+  --text-caption--font-weight: 400;
+  --text-badge: 12px; /* badge de categoría en "Proyectos recientes" */
+  --text-badge--line-height: 1.3;
+  --text-badge--font-weight: 500;
+  --text-micro: 12px; /* copyright */
+  --text-micro--line-height: 1.5;
+  --text-micro--font-weight: 400;
+
+  /* Radios */
+  --radius-pill: 999px; /* badges, tabs, barra de tabs */
+  --radius-card: 24px; /* imagen de card de proyecto */
+  --radius-tile: 22px; /* tarjetas de A pedido */
+  --radius-hero: 28px; /* imagen principal de proyecto, md+ */
+  --radius-hero-sm: 18px; /* idem, base */
+  --radius-btn: 14px; /* botón "Conocer más" */
+  --radius-btn-md: 12px; /* theme toggle / CTA, md+ */
+  --radius-btn-sm: 10px; /* CTA base */
+
+  /* Sombras */
+  --shadow-cover: 0 30px 60px -24px rgb(16 17 20 / 0.45), 0 0 0 1px rgb(255 255 255 / 0.4); /* cover shot de card */
+  --shadow-btn: 0 8px 20px -10px rgb(16 17 20 / 0.6); /* botones oscuros */
+  --shadow-ring: 0 0 0 1px rgb(16 17 20 / 0.08); /* contorno sutil */
+  --shadow-tabbar: 0 0 0 1px #10111414, 0 10px 30px -18px rgb(16 17 20 / 0.35);
+  --shadow-pill: 0 1px 2px rgb(16 17 20 / 0.08), 0 4px 14px -6px rgb(16 17 20 / 0.18);
+
+  /* Easing y animaciones del original */
+  --ease-soft: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --animate-panel-in: panel-in 0.7s var(--ease-soft) both;
+  @keyframes panel-in {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+      filter: blur(6px);
+    }
+  }
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "blwf", "cv03", "cv04", "cv09", "cv11"; /* heredado de Framer */
+    overflow-x: clip;
+  }
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    max-width: 100%;
+    overflow-x: clip;
+  }
+}
+
+/* CSS propio por área (solo lo que Tailwind no expresa bien). Cada archivo tiene un único dueño. */
+@import "./components/site.css";  /* layout, header, footer, cards, página de proyecto */
+@import "./components/home.css";  /* tabs, carrusel, paneles de la home */
+
+/* Las anclas de tabs (#sobre-mi…) llegan con scroll suave, como el original. */
+@layer base {
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+}

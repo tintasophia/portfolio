@@ -1,0 +1,36 @@
+---
+title: "\"Bondilectivo\". Entre flores y recuerdos"
+description: "Un Bedford clásico reinterpretado a través de la tradición del fileteado porteño y la ornamentación del Art Nouveau."
+category: "Cuadro por encargo"
+year: "2026"
+services:
+  - "Ilustración digital"
+  - "Cuadro personalizado"
+intro: "Un Bedford clásico reinterpretado a través de la tradición del fileteado porteño y la ornamentación del Art Nouveau."
+order: 2
+cover:
+  src: ../../assets/img/bondilectivo/cover.png
+  alt: "Una persona sostiene frente a una ventana el cuadro enmarcado con el colectivo ilustrado"
+hero:
+  src: ../../assets/img/bondilectivo/hero.jpg
+  alt: "Detalle del cuadro enmarcado: un colectivo clásico dentro de un marco ornamental con flores rojizas y una abeja"
+blocks:
+  - type: text
+    title: "Descripción general"
+    body: |
+      Una pieza en blanco y negro realizada mediante ilustración digital y puntillismo, con detalles de sombra en rojo. La composición integra un colectivo clásico entre formas botánicas, flores y ornamentaciones que enmarcan la escena.
+  - type: images
+    images:
+      - src: ../../assets/img/bondilectivo/cover.png
+        alt: "Una persona sostiene frente a una ventana el cuadro enmarcado con el colectivo ilustrado"
+      - src: ../../assets/img/bondilectivo/detalle-1.png
+        alt: "Dibujando el colectivo en una tablet con un apple pencil, con una imagen de referencia en pantalla"
+  - type: text
+    title: "Detrás de la ilustración"
+    body: |
+      A partir de una fotografía de referencia y algunas indicaciones iniciales, desarrollé libremente la composición, buscando integrar el vehículo y los elementos naturales en una misma pieza. El trabajo se completó con la impresión de la ilustración y la intervención manual del marco.
+  - type: image
+    image:
+      src: ../../assets/img/bondilectivo/cierre.png
+      alt: "Detalle de la ilustración impresa del colectivo con flores, una abeja y la firma «Sophia 2026»"
+---
