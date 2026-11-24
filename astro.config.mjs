@@ -10,6 +10,8 @@ const isDev = process.argv.includes("dev");
 
 export default defineConfig({
   site: "https://tintasophia.github.io",
+  // El repo se llama "portfolio" → el sitio vive en /portfolio/. En dev queda en "/" para Keystatic.
+  base: isDev ? "/" : "/portfolio",
   output: "static",
   // En dev se relaja: la API de Keystatic usa rutas sin "/" final.
   trailingSlash: isDev ? "ignore" : "always",

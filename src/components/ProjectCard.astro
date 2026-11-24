@@ -1,4 +1,5 @@
 ---
+import { url } from "../lib/url";
 // Card de proyecto (home y "Proyectos recientes").
 import type { CollectionEntry } from "astro:content";
 import Img from "./Img.astro";
@@ -7,7 +8,7 @@ const { project, variant = "home", priority = false } = Astro.props;
 const { title, category, year, cover } = project.data;
 const related = variant === "related";
 ---
-<a href={`/proyectos/${project.id}/`} class="group flex flex-col gap-3.5">
+<a href={url(`proyectos/${project.id}/`)} class="group flex flex-col gap-3.5">
   <div class="bg-media relative aspect-[4/3] overflow-clip rounded-card isolate">
     <div
       aria-hidden="true"

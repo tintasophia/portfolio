@@ -1,8 +1,9 @@
 ---
+import { url } from "../lib/url";
 import site from "../data/site.json";
 ---
 <header class="mx-auto flex w-full max-w-308 items-center justify-between px-5 pt-6 md:px-6 md:pt-10">
-  <a href="/" class="text-brand text-ink">{site.name}</a>
+  <a href={url()} class="text-brand text-ink">{site.name}</a>
   <a
     href={`mailto:${site.email}`}
     class="bg-ink text-ink-inverse shadow-btn inline-flex h-8.5 items-center rounded-btn-sm px-3 text-[13px] leading-none font-medium transition duration-300 hover:brightness-125 motion-reduce:transition-none md:h-9.5 md:rounded-btn-md md:px-3.5 md:text-[14px]"
