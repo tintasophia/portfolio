@@ -1,30 +1,34 @@
 ---
-/* Contenido de la home entre el header y el footer: hero + tabs (Works / Sobre mí / A pedido).
-   Uso: <Home /> dentro de src/pages/index.astro. Sin props. Cero JS. */
+/* Contenido de una página de la home entre el header y el footer: hero + barra de pestañas +
+   el panel de esa página. Cada pestaña es una página (/, /sobre-mi/, /a-pedido/); el cambio
+   entre ellas se anima con view transitions entre documentos (solo CSS, ver global.css).
+   Uso: <Home active="trabajos" /> en src/pages/index.astro (y sobre-mi, a-pedido). Cero JS. */
 import { getEntry } from "astro:content";
 import { getProyectosOrdenados } from "../../lib/proyectos";
+import { getTabs, type TabKey } from "../../lib/tabs";
 import Hero from "./Hero.astro";
 import Tabs from "./Tabs.astro";
 import WorksPanel from "./WorksPanel.astro";
 import AboutPanel from "./AboutPanel.astro";
 import CommissionPanel from "./CommissionPanel.astro";
 
+interface Props {
+  active: TabKey;
+}
+const { active } = Astro.props;
 const hero = await getEntry("hero", "hero");
-const about = await getEntry("sobreMi", "sobre-mi");
-const commission = await getEntry("aPedido", "a-pedido");
-if (!hero || !about || !commission) throw new Error("Falta contenido en src/content/home");
-const heroData = hero.data;
-const projects = await getProyectosOrdenados();
-const tabs = [
-  { id: "1" as const, label: heroData.tabs.trabajos },
-  { id: "2" as const, label: heroData.tabs.sobreMi },
-  { id: "3" as const, label: heroData.tabs.aPedido },
-];
+if (!hero) throw new Error("Falta contenido en src/content/home");
+const tabs = await getTabs();
+// solo el contenido del panel de esta página
+const projects = active === "trabajos" ? await getProyectosOrdenados() : [];
+const about = active === "sobreMi" ? await getEntry("sobreMi", "sobre-mi") : undefined;
+const commission = active === "aPedido" ? await getEntry("aPedido", "a-pedido") : undefined;
+if ((active === "sobreMi" && !about) || (active === "aPedido" && !commission)) throw new Error("Falta contenido en src/content/home");
 ---
 
-<Hero title={heroData.title} tagline={heroData.tagline} />
-<Tabs tabs={tabs}>
-  <WorksPanel label={heroData.tabs.trabajos} projects={projects} />
-  <AboutPanel entry={about} />
-  <CommissionPanel entry={commission} />
+<Hero title={hero.data.title} tagline={hero.data.tagline} />
+<Tabs tabs={tabs} active={active}>
+  {active === "trabajos" && <WorksPanel label={hero.data.tabs.trabajos} projects={projects} />}
+  {about && <AboutPanel entry={about} />}
+  {commission && <CommissionPanel entry={commission} />}
 </Tabs>

@@ -74,6 +74,22 @@ Las imágenes se suben en tamaño original y van en `src/assets/img/<slug>/`. El
 
 Si se actualiza Keystatic, el parche deja de aplicar y hay que rehacerlo para la versión nueva.
 
+## Editor visual (prueba de concepto, rama `editor-visual`)
+
+Una prueba interna del editor visual de Landing Factory sobre este sitio: la página real en mobile y desktop lado a lado, un inspector de estilos que escribe clases de Tailwind y, al costado, Claude Code de dos formas: un **chat** (por ACP: muestra los pasos, pide permiso con el diff antes de tocar archivos) y una **terminal**.
+
+```sh
+pnpm editor:visual   # http://127.0.0.1:5171/__editor/
+```
+
+- Requiere el editor en `~/orca/workspaces/landing-factory/editor-sophi-poc/experiments/editor-proto` (rama `0xFrann/editor-sophi-poc` de landing-factory, `pnpm install --ignore-workspace` ahí) o la ruta en `LF_EDITOR_DIR`, y `claude` con sesión iniciada.
+- Todo se edita en una **copia de trabajo**; este repo no cambia hasta que se toca **Guardar en sophi-web**, que copia los archivos cambiados (sin los `data-lf-id` del editor). Después se revisa con `git diff` y se commitea como siempre.
+- Todas las páginas: se eligen arriba (la home y cada proyecto).
+- **Tema:** sin nada seleccionado, el panel derecho edita los tokens del `@theme` de `src/styles/global.css` (colores, tipografía, radios, sombras). Se ve al instante en todo el sitio y se deshace como cualquier edición. Abajo lista los valores escritos a mano fuera del tema.
+- **Keystatic adentro (modo Contenido):** el mismo Keystatic de `pnpm editor`, pero servido por el editor y sobre su copia de trabajo, al lado de la página en vivo. Lo que se guarda en Keystatic se ve en el canvas y queda en el historial ("Keystatic"); lo que se cambia en el canvas aparece en Keystatic. En la página de un proyecto abre ese proyecto; en el inspector, un texto que sale del contenido tiene **Editar en Keystatic**.
+- **El asistente (chat):** por defecto en modo **Simple**, pensado para Sophi: habla en términos de diseño, sin archivos ni código, aplica los cambios sin pedir permiso (todo se deshace con ⌘Z) y usa Sonnet para no gastar el límite de uso. El botón ⚡ (**Pedido difícil**) usa un modelo más potente solo para el próximo pedido; si algo no quedó bien, **Probar de nuevo con más potencia** hace lo mismo. **Simple/Detallado** (arriba del chat) muestra los pasos técnicos y la terminal.
+- **El repo manda:** al arrancar y mientras corre, lo que cambió en el repo (Keystatic abierto por separado, un `git pull`, el IDE) entra a la copia de trabajo, salvo los archivos con cambios sin guardar en el editor, que avisa. Mejor usar el Keystatic del editor mientras está abierto.
+
 ## Estructura
 
 ```

@@ -38,14 +38,14 @@ blocks:
   - discriminant: text
     value:
       title: Detrás de la ilustración
-      body: >
-        Dos ilustraciones que exploran distintas formas de representar la
-        naturaleza.
+      body: >-
+        Cuando no hay una línea direccional pautada para crear una pieza, me
+        gusta tomar como punto de partida los gustos, intereses y detalles de la
+        persona que la encarga.
 
 
-        Una combina flores, plantas y bichitos con una calavera como centro de
-        la escena, creando un contraste entre lo vivo y lo muerto. La otra,
-        reúne flores nativas características de la Patagonia Argentina.
+        Conocer un poco de su mundo me permite encontrar inspiración y llevar
+        esos elementos a una composición propia.
   - discriminant: image
     value:
       image:

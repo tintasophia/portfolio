@@ -266,7 +266,7 @@ export default config({
       label: "Sobre mí",
       path: "src/content/home/sobre-mi",
       format: { contentField: "content" },
-      previewUrl: "/#2",
+      previewUrl: "/sobre-mi/",
       schema: {
         greeting: fields.text({ label: "Saludo" }),
         lead: fields.text({ label: "Frase de presentación" }),
@@ -304,7 +304,7 @@ export default config({
       label: "A pedido",
       path: "src/content/home/a-pedido",
       format: { data: "yaml" },
-      previewUrl: "/#3",
+      previewUrl: "/a-pedido/",
       schema: {
         eyebrow: fields.text({ label: "Título de la sección" }),
         title: fields.text({ label: "Pregunta destacada" }),
@@ -319,6 +319,7 @@ export default config({
           { label: "Bloques", itemLabel: (p) => p.fields.title.value || "Bloque" },
         ),
         note: fields.text({ label: "Nota final", multiline: true }),
+        contactTitle: fields.text({ label: "Frase de la tarjeta de contacto", description: "Va arriba del mail y del botón." }),
         image: picture("Ilustración", "a-pedido"),
         imageMobile: picture("Ilustración (versión celular)", "a-pedido"),
       },

@@ -8,5 +8,5 @@ import site from "../data/site.json";
 const [first] = await getProyectosOrdenados();
 ---
 <Base title={site.title} description={site.description} image={first?.data.cover.src}>
-  <Home />
+  <Home active="trabajos" />
 </Base>

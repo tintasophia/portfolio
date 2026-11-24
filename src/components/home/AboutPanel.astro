@@ -10,11 +10,10 @@ const { Content } = await render(entry);
 ---
 
 <section
-  data-panel="2"
   class="animate-panel-in motion-reduce:animate-none"
 >
   <div
-    class="flex flex-col gap-8 pb-[22px] md:grid md:w-[762px] md:max-w-full md:grid-cols-2 md:gap-14 md:pt-11 lg:flex lg:w-[96%] lg:flex-row lg:gap-12"
+    class="flex flex-col gap-8 pb-[22px] md:grid md:w-[762px] md:max-w-full md:grid-cols-2 md:gap-14 md:pt-0 lg:flex lg:w-[96%] lg:flex-row lg:gap-12"
   >
     <div class="md:self-start"><Carousel photos={photos} interval={interval} /></div>
     <div class="flex min-w-0 flex-col gap-[18px] md:self-start lg:flex-1">

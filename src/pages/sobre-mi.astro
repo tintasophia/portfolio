@@ -1,0 +1,11 @@
+---
+import Base from "../layouts/Base.astro";
+import Home from "../components/home/Home.astro";
+import site from "../data/site.json";
+import { getTabs } from "../lib/tabs";
+
+const tab = (await getTabs()).find((t) => t.key === "sobreMi")!;
+---
+<Base title={`${tab.label} — ${site.name}`} description={site.description}>
+  <Home active="sobreMi" />
+</Base>

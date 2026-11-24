@@ -1,36 +1,33 @@
 ---
-import { url } from "../lib/url";
-import { getEntry } from "astro:content";
 import site from "../data/site.json";
-const hero = await getEntry("hero", "hero");
-const t = hero?.data.tabs;
-const tabs = t ? [{ id: "1", label: t.trabajos }, { id: "2", label: t.sobreMi }, { id: "3", label: t.aPedido }] : [];
+import { getTabs, tabHref } from "../lib/tabs";
+const tabs = await getTabs();
 const year = new Date().getFullYear();
-const link = "text-ink block text-[14px] leading-normal underline-offset-4 hover:underline";
+const link = "text-ink-inverse/90 block text-ui leading-normal underline-offset-4 hover:underline";
 ---
-<footer class="mx-auto w-full max-w-308">
-  <div class="bg-accent-2 px-5 pt-17 md:px-6 md:pt-14.5">
-    <div class="border-line flex flex-col gap-9 border-t py-6 md:flex-row md:gap-0 md:py-8 lg:gap-8 lg:pt-16 lg:pb-14">
+<footer class="bg-accent-2 w-full">
+  <div class="mx-auto max-w-308 px-5 pt-17 md:px-6 md:pt-14.5">
+    <div class="border-ink-inverse/30 flex flex-col gap-9 border-t py-6 md:flex-row md:gap-0 md:py-8 lg:gap-8 lg:pt-16 lg:pb-14">
       <div class="flex flex-col gap-3.5 md:w-[42%] lg:w-140">
-        <p class="text-brand">{site.name}</p>
-        <p class="text-body text-ink max-w-90">{site.footer.blurb}</p>
+        <p class="font-semibold text-[17px] leading-[1.2] tracking-[-0.02em] text-ink-inverse">{site.name}</p>
+        <p class="text-body text-ink-inverse/90 max-w-90 whitespace-pre-line">{site.footer.blurb}</p>
       </div>
       <nav aria-label={site.footer.navTitle} class="flex flex-col gap-2.5 md:flex-1 lg:w-70 lg:flex-none">
-        <h2 class="text-label">{site.footer.navTitle}</h2>
+        <h2 class="text-label text-ink-inverse">{site.footer.navTitle}</h2>
         <ul class="flex flex-col gap-2.5">
-          {tabs.map((t) => <li><a class={link} href={url(`#${t.id}`)}>{t.label}</a></li>)}
+          {tabs.map((t) => <li><a class={link} href={tabHref(t)}>{t.label}</a></li>)}
         </ul>
       </nav>
       <div class="flex flex-col gap-2.5 md:flex-1 lg:w-70 lg:flex-none">
-        <h2 class="text-label">{site.footer.contactTitle}</h2>
+        <h2 class="text-label text-ink-inverse">{site.footer.contactTitle}</h2>
         <ul class="flex flex-col gap-2.5">
           <li><a class={link} href={`mailto:${site.email}`}>{site.email}</a></li>
           {site.social.map((s) => <li><a class={link} href={s.url} rel="noopener">{s.label}</a></li>)}
         </ul>
       </div>
     </div>
-    <div class="border-line flex flex-col gap-1.5 border-t py-5 md:flex-row md:items-center md:justify-between">
-      <p class="text-micro text-ink">© {year}</p>
+    <div class="border-ink-inverse/30 flex flex-col gap-1.5 border-t py-5 md:flex-row md:items-center md:justify-between">
+      <p class="text-micro text-ink-inverse/80">© {year}</p>
     </div>
   </div>
 </footer>

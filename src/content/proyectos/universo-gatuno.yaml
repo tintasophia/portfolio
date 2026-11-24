@@ -1,12 +1,12 @@
 title: Universo gatuno
 category: Personajes
-year: 2025 - 2026
+year: 2024 - 2026
 intro: >-
-  Una colección de ilustraciones de gatos que explora diferentes estilos,
-  técnicas y formas de representación.
+  Colección de ilustraciones de gatos que explora diferentes estilos, técnicas y
+  formas.
 description: >-
-  Una colección de ilustraciones de gatos que explora diferentes estilos,
-  técnicas y formas de representación.
+  Colección de ilustraciones de gatos que explora diferentes estilos, técnicas y
+  formas de representación.
 services:
   - Ilustración digital
   - Ilustración editorial
@@ -23,8 +23,8 @@ blocks:
       body: >
         Una selección de ilustraciones de distintos personajes felinos,
         realizadas tanto en formato digital como tradicional. Cada uno tiene sus
-        propias formas, expresiones y particularidades, con propuestas que van
-        desde lo cute y caricaturesco hasta lo más oscuro.
+        propias particularidades, con propuestas que van desde lo cute y
+        caricaturesco hasta algo más trash.
   - discriminant: images
     value:
       images:
@@ -47,14 +47,11 @@ blocks:
   - discriminant: images
     value:
       images:
-        - src: ../../assets/img/universo-gatuno/image-klbo.avif
-          alt: AAsdasd
-        - src: ../../assets/img/universo-gatuno/image-1-x1d6.avif
-          alt: asdasdad
-  - discriminant: image
-    value:
-      image:
-        src: ../../assets/img/universo-gatuno/cierre.jpg
-        alt: >-
-          Cuaderno abierto con garabatos de gatos, un hámster punk, calaveras y
-          manos con el gesto del rock, rodeado de fineliners
+        - src: ../../assets/img/universo-gatuno/fullsizerender-nlwk.jpeg
+          alt: >-
+            Cuaderno abierto con garabatos de gatos, un hámster punk, calaveras
+            y manos con el gesto del rock, rodeado de fineliners
+        - src: ../../assets/img/universo-gatuno/img-0601-6yra.png
+          alt: >-
+            Ilustración de gato acostado con la barriga para arriba. Blanco y
+            negro sobre fondo blanco

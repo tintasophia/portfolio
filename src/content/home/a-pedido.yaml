@@ -2,9 +2,9 @@ eyebrow: A pedido
 title: ¿Tenés una idea en mente?
 subtitle: Siempre hay lugar para nuevas propuestas!
 intro: >-
-  Me gusta trabajar con distintas temáticas y explorar diferentes formas de
-  representarlas, adaptando cada ilustración a la idea y al propósito del
-  proyecto.
+  Disfruto explorar distintas temáticas y formas de ilustrar. Me gusta
+  especialmente combinar lo delicado y oscuro, jugando con contrastes que le dan
+  a cada pieza una personalidad propia.
 groups:
   - title: ¿Qué podemos hacer?
     items:
@@ -16,12 +16,14 @@ groups:
     items: []
     text: >-
       Las ilustraciones pueden adaptarse a diferentes formatos y soportes, como
-      libros, cuadernos, láminas y cuadros. También estoy abierta a nuevas
-      propuestas, así que si tenés alguna idea diferente, podemos charlarla y
-      ver cómo llevarla a cabo.
+      libros, cuadernos, láminas, cuadros, flyers y portadas. Si tenés otra idea
+      en mente, podemos charlarla y ver cómo llevarla a cabo.
+
+      Estoy abierta a nuevas propuestas!
 note: >-
   Trabajo principalmente en formato digital, con posibilidad de imprimir las
   ilustraciones.
+contactTitle: ¿Arrancamos? Escribime y lo charlamos.
 image:
   src: ../../assets/img/a-pedido/ilustracion.png
   alt: >-
